@@ -1,32 +1,19 @@
 package dev.sterner.addon.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferRenderer;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.sammy.lodestone.setup.LodestoneParticles;
-import com.sammy.lodestone.setup.LodestoneShaders;
-import com.sammy.lodestone.systems.rendering.ExtendedShader;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
 import dev.sterner.addon.AddonClient;
 import dev.sterner.addon.common.BeamBlockEntity;
-import dev.sterner.malum.common.blockentity.EtherBlockEntity;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.random.Xoroshiro128PlusPlusRandom;
 import net.minecraft.world.World;
 import org.joml.Matrix4f;
 import org.joml.Vector2d;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.joml.Vector4f;
 
 public class BeamBlockEntityRenderer implements BlockEntityRenderer<BeamBlockEntity> {
 	public BeamBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
@@ -38,9 +25,10 @@ public class BeamBlockEntityRenderer implements BlockEntityRenderer<BeamBlockEnt
 			return;
 		}
 		float f = (float)entity.getWorld().getTime() + tickDelta;
-		final int red = Integer.parseInt(Integer.toString(0x7ecdfb, 16), 16) >> 16;
-		final int green = Integer.parseInt(Integer.toString(0x7ecdfb, 16), 16) >> 8;
-		final int blue = Integer.parseInt(Integer.toString(0x7ecdfb, 16), 16);
+		int color = Integer.parseInt(Integer.toString(0x7ecdfb, 16), 16);
+		final int red = color >> 16;
+		final int green = color >> 8;
+		final int blue = color;
 
 		Vec3d origin = Vec3d.ZERO;
 		Vec3d target = new Vec3d(5,0,0);
@@ -74,25 +62,60 @@ public class BeamBlockEntityRenderer implements BlockEntityRenderer<BeamBlockEnt
 		//list.add(target);
 		VertexConsumer builder = vertexConsumers.getBuffer(AddonClient.getEnergySwirl(0,  f * 0.01F % 1.0F));
 		Vec3d start = Vec3d.ZERO;
-		Vec3d end = new Vec3d(10,0,0);
+		Vec3d end = new Vec3d(0,2,3);
 		matrices.push();
 		int steps = (int)end.subtract(start).length() * 10;
+
 		if (steps > 40) steps = 40;
 		Vector2d angle = getAngle(end.subtract(start));
 		Matrix4f matrix4f = matrices.peek().getModel();
 		Vec3d lastInterp = start;
-		for (int i = 1; i < steps; i++) {
+		Vec3d lastUp = new Vec3d(0, 1, 0);
+		float time = tickDelta + world.getTime();
+
+		float scroll = time / 10;
+		float minX = scroll % 1;
+		float maxX = minX + 1;
+
+		time /= 30;
+
+		Matrix4f cameraMatrix = new Matrix4f();
+		cameraMatrix.rotate(MinecraftClient.getInstance().gameRenderer.getCamera().getRotation());// 100
+
+		for (int i = 0; i < steps; i++) {
 			double delta = i / (double) steps;
 			double amp = Math.min(delta, 1 - delta);
+			amp *= 1.1;
 			Vec3d interp = interp(delta, start, end);
+			float dScl = 30;
 
-			Vec3d offset = new Vec3d(MathHelper.cos((float)delta + tickDelta + world.getTime()) * amp, MathHelper.sin((float)delta + tickDelta + world.getTime()) * amp, 0);
+			// TODO: correct texture offsets
+			Vec3d offset = new Vec3d(
+					MathHelper.cos((float)(delta * dScl) + time) * amp,
+					MathHelper.sin((float)(delta * dScl) + time) * amp,
+					MathHelper.cos((float)(delta * dScl * 2) + time * 1.2f) * amp / 5
+			);
+
 			interp = interp.add(rotate(offset, angle));
-			builder.vertex(matrix4f, (float)lastInterp.x, (float)lastInterp.y + 1, (float)lastInterp.z).color(red, green, blue, 255).uv(0, 1).overlay(overlay).light(light).normal(0,1,0).next();
-			builder.vertex(matrix4f, (float)lastInterp.x, (float)interp.y + 1, (float)interp.z).color(red, green, blue, 255).uv(1, 1).overlay(overlay).light(light).normal(0,1,0).next();
-			builder.vertex(matrix4f, (float)lastInterp.x, (float)interp.y - 1, (float)interp.z).color(red, green, blue, 255).uv(1, 0).overlay(overlay).light(light).normal(0,1,0).next();
-			builder.vertex(matrix4f, (float)lastInterp.x, (float)lastInterp.y - 1, (float)lastInterp.z).color(red, green, blue, 255).uv(0, 0).overlay(overlay).light(light).normal(0,1,0).next();
+
+			Vector2d rot = new Vector2d(
+					MathHelper.sin((float)(delta * dScl) + time) * amp,
+					MathHelper.cos((float)(delta * dScl) + time) * amp
+			);
+			Vector4f upV4 = new Vector4f(0, 0.5f, 0, 1);
+			upV4.mul(cameraMatrix);
+			Vec3d up = new Vec3d(upV4.x, upV4.y, upV4.z);
+			up = rotate(rotate(up, angle), rot);
+
+			if (i != 0) {
+				builder.vertex(matrix4f, (float)(lastInterp.x + lastUp.x), (float)(lastInterp.y + lastUp.y), (float)(lastInterp.z + lastUp.z)).color(red, green, blue, 255).uv(1, minX).overlay(overlay).light(light).normal(0,1,0).next();
+				builder.vertex(matrix4f, (float)(interp.x + up.x), (float)(interp.y + up.y), (float)(interp.z + up.z)).color(red, green, blue, 255).uv(1, maxX).overlay(overlay).light(light).normal(0,1,0).next();
+				builder.vertex(matrix4f, (float)(interp.x - up.x), (float)(interp.y - up.y), (float)(interp.z - up.z)).color(red, green, blue, 255).uv(0, maxX).overlay(overlay).light(light).normal(0,1,0).next();
+				builder.vertex(matrix4f, (float)(lastInterp.x - lastUp.x), (float)(lastInterp.y - lastUp.y), (float)(lastInterp.z - lastUp.z)).color(red, green, blue, 255).uv(0, minX).overlay(overlay).light(light).normal(0,1,0).next();
+			}
+
 			lastInterp = interp;
+			lastUp = up;
 		}
 		matrices.pop();
 /*
