@@ -10,9 +10,9 @@ import static com.sammy.lodestone.systems.rendering.Phases.ADDITIVE_TRANSPARENCY
 import static net.minecraft.client.render.RenderPhase.*;
 
 public class AddonRenderLayers {
-	public static RenderLayer getEnergySwirl(float x, float y) {
+	public static RenderLayer getEnergySwirl(Identifier texture, float x, float y) {
 		return RenderLayer.of(
-				"energy_swirl",
+				"beam",
 				VertexFormats.POSITION_COLOR_TEXTURE_OVERLAY_LIGHT_NORMAL,
 				VertexFormat.DrawMode.QUADS,
 				256,
@@ -20,7 +20,7 @@ public class AddonRenderLayers {
 				true,
 				RenderLayer.MultiPhaseParameters.builder()
 						.shader(new RenderPhase.Shader(() -> AddonShaders.BEAM.getInstance().get()))
-						.texture(new RenderPhase.Texture(new Identifier("addon", "textures/misc/beam.png"), false, false))
+						.texture(new RenderPhase.Texture(texture, false, false))
 						.texturing(new RenderPhase.OffsetTexturing(x, y))
 						.transparency(ADDITIVE_TRANSPARENCY)
 						.cull(DISABLE_CULLING)

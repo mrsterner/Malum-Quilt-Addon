@@ -1,5 +1,6 @@
 package dev.sterner.addon.client.renderer;
 
+import dev.sterner.addon.Addon;
 import dev.sterner.addon.AddonClient;
 import dev.sterner.addon.client.registry.AddonRenderLayers;
 import dev.sterner.addon.common.blockentity.BeamBlockEntity;
@@ -8,6 +9,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 
 public class BeamBlockEntityRenderer implements BlockEntityRenderer<BeamBlockEntity> {
@@ -23,9 +25,10 @@ public class BeamBlockEntityRenderer implements BlockEntityRenderer<BeamBlockEnt
 		Vec3d end = new Vec3d(0,2,8);
 		float f = (float)entity.getWorld().getTime() + tickDelta;
 		int color = Integer.parseInt(Integer.toString(0x7ecdfb, 16), 16);
+		Identifier texture = Addon.id("textures/misc/beam.png");
 
 		matrices.push();
-		RenderUtils.renderBeam(entity.getWorld(), tickDelta, matrices, vertexConsumers.getBuffer(AddonRenderLayers.getEnergySwirl(0,  f * 0.1F % 1.0F)), start, end, light, overlay, color);
+		RenderUtils.renderBeam(entity.getWorld(), tickDelta, matrices, vertexConsumers.getBuffer(AddonRenderLayers.getEnergySwirl(texture,0,  f * 0.1F % 1.0F)), start, end, light, overlay, color);
 		matrices.pop();
 	}
 
