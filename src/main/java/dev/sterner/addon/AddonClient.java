@@ -19,21 +19,6 @@ import static com.sammy.lodestone.systems.rendering.Phases.ADDITIVE_TRANSPARENCY
 import static net.minecraft.client.render.RenderPhase.*;
 
 public class AddonClient implements ClientModInitializer {
-/*
-	public static final RenderLayer MAGIC = RenderLayer.of("magic", VertexFormats.POSITION_COLOR,
-			VertexFormat.DrawMode.QUADS, 256, false, true, RenderLayer.MultiPhaseParameters.builder()
-					.shader(RenderLayer.ENERGY_SWIRL_SHADER)//new RenderPhase.Shader(() -> AddonShaderRegistry.BEAM.getInstance().get()))
-					.texture(new RenderPhase.Texture(new Identifier("addon", "textures/misc/beam.png"), false, false))
-					.lightmap(ENABLE_LIGHTMAP)
-
-					.texturing(new RenderPhase.OffsetTexturing(x, y))
-					.transparency(ADDITIVE_TRANSPARENCY)
-					.cull(DISABLE_CULLING)
-					.overlay(ENABLE_OVERLAY_COLOR)
-					.build(false));
-
-
- */
 
 	public static RenderLayer getEnergySwirl(float x, float y) {
 		return RenderLayer.of(

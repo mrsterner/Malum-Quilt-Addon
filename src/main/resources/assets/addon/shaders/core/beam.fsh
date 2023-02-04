@@ -35,8 +35,6 @@ void main() {
 
 
     vec4 color = texture(Sampler0, uv) * vertexColor * ColorModulator;
-    if (color.a < 0.1) {
-        discard;
-    }
+
     fragColor = color ;//* linear_fog_fade(vertexDistance, FogStart, FogEnd);
 }

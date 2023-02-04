@@ -30,39 +30,11 @@ public class BeamBlockEntityRenderer implements BlockEntityRenderer<BeamBlockEnt
 		final int green = color >> 8;
 		final int blue = color;
 
-		Vec3d origin = Vec3d.ZERO;
-		Vec3d target = new Vec3d(5,0,0);
-
-
 		World world = entity.getWorld();
-		//List<Vec3d> list = new ArrayList<>();
-		//list.add(origin);
-		//var v = new Xoroshiro128PlusPlusRandom(123123L);
-		//list.add(new Vec3d(0,MathHelper.sin(f * 0.1f) + 1,0));
-/*
-		double distance = origin.distanceTo(target);
-		int steps = 8;
-		float normalized = 0;
-		double stepLength = distance / steps;
-		for(int i = 1; i < steps; ++i){
-			normalized += 1f / ((float)steps);
 
-			float strength = MathHelper.sin(normalized);
-			list.add(new Vec3d(stepLength * i, MathHelper.sin(f * 0.1f) * strength,0));
-		}
-
-
- */
-		/*
-		builder.vertex(matrix, -halfWidth, 0, 0).color(r, g, b, a).uv(0.0F, 1.0F).overlay(overlay).light(light).normal(0.0F, 1.0F, 0.0F).next();
-		builder.vertex(matrix, halfWidth, 0, 0).color(r, g, b, a).uv(1.0F, 1.0F).overlay(overlay).light(light).normal(0.0F, 1.0F, 0.0F).next();
-		builder.vertex(matrix, halfWidth, 0, distance).color(r, g, b, a).uv(1.0F, 0.0F).overlay(overlay).light(light).normal(0.0F, 1.0F, 0.0F).next();
-		builder.vertex(matrix, -halfWidth, 0, distance).color(r, g, b, a).uv(0.0F, 0.0F).overlay(overlay).light(light).normal(0.0F, 1.0F, 0.0F).next();
-		 */
-		//list.add(target);
-		VertexConsumer builder = vertexConsumers.getBuffer(AddonClient.getEnergySwirl(0,  f * 0.01F % 1.0F));
+		VertexConsumer builder = vertexConsumers.getBuffer(AddonClient.getEnergySwirl(0,  f * 0.1F % 1.0F));
 		Vec3d start = Vec3d.ZERO;
-		Vec3d end = new Vec3d(0,2,3);
+		Vec3d end = new Vec3d(0,2,8);
 		matrices.push();
 		int steps = (int)end.subtract(start).length() * 10;
 
@@ -72,10 +44,6 @@ public class BeamBlockEntityRenderer implements BlockEntityRenderer<BeamBlockEnt
 		Vec3d lastInterp = start;
 		Vec3d lastUp = new Vec3d(0, 1, 0);
 		float time = tickDelta + world.getTime();
-
-		float scroll = time / 10;
-		float minX = scroll % 1;
-		float maxX = minX + 1;
 
 		time /= 30;
 
@@ -87,9 +55,9 @@ public class BeamBlockEntityRenderer implements BlockEntityRenderer<BeamBlockEnt
 			double amp = Math.min(delta, 1 - delta);
 			amp *= 1.1;
 			Vec3d interp = interp(delta, start, end);
-			float dScl = 30;
+			float dScl = 25;
 
-			// TODO: correct texture offsets
+			//TODO: correct texture offsets
 			Vec3d offset = new Vec3d(
 					MathHelper.cos((float)(delta * dScl) + time) * amp,
 					MathHelper.sin((float)(delta * dScl) + time) * amp,
@@ -108,36 +76,21 @@ public class BeamBlockEntityRenderer implements BlockEntityRenderer<BeamBlockEnt
 			up = rotate(rotate(up, angle), rot);
 
 			if (i != 0) {
-				builder.vertex(matrix4f, (float)(lastInterp.x + lastUp.x), (float)(lastInterp.y + lastUp.y), (float)(lastInterp.z + lastUp.z)).color(red, green, blue, 255).uv(1, minX).overlay(overlay).light(light).normal(0,1,0).next();
-				builder.vertex(matrix4f, (float)(interp.x + up.x), (float)(interp.y + up.y), (float)(interp.z + up.z)).color(red, green, blue, 255).uv(1, maxX).overlay(overlay).light(light).normal(0,1,0).next();
-				builder.vertex(matrix4f, (float)(interp.x - up.x), (float)(interp.y - up.y), (float)(interp.z - up.z)).color(red, green, blue, 255).uv(0, maxX).overlay(overlay).light(light).normal(0,1,0).next();
-				builder.vertex(matrix4f, (float)(lastInterp.x - lastUp.x), (float)(lastInterp.y - lastUp.y), (float)(lastInterp.z - lastUp.z)).color(red, green, blue, 255).uv(0, minX).overlay(overlay).light(light).normal(0,1,0).next();
+				builder.vertex(matrix4f, (float)(lastInterp.x + lastUp.x), (float)(lastInterp.y + lastUp.y), (float)(lastInterp.z + lastUp.z)).color(red, green, blue, 255).uv(1, 0).overlay(overlay).light(light).normal(0,1,0).next();
+				builder.vertex(matrix4f, (float)(interp.x + up.x),         (float)(interp.y + up.y),         (float)(interp.z + up.z))        .color(red, green, blue, 255).uv(1, 1).overlay(overlay).light(light).normal(0,1,0).next();
+				builder.vertex(matrix4f, (float)(interp.x - up.x),         (float)(interp.y - up.y),         (float)(interp.z - up.z))        .color(red, green, blue, 255).uv(0, 1).overlay(overlay).light(light).normal(0,1,0).next();
+				builder.vertex(matrix4f, (float)(lastInterp.x - lastUp.x), (float)(lastInterp.y - lastUp.y), (float)(lastInterp.z - lastUp.z)).color(red, green, blue, 255).uv(0, 0).overlay(overlay).light(light).normal(0,1,0).next();
 			}
 
 			lastInterp = interp;
 			lastUp = up;
 		}
 		matrices.pop();
-/*
-		matrices.push();
-		RenderSystem.enableBlend();
-		RenderSystem.defaultBlendFunc();
-		//RenderHelper.drawSteppedLineBetween(vertexConsumers, matrices, list, 0.5F, red, green, blue, 255, f * 0.01F % 1.0F, light, overlay);
-		RenderSystem.depthMask(true);
-		RenderSystem.disableBlend();
-		matrices.pop();
-
- */
 	}
 
 	@Override
 	public boolean rendersOutsideBoundingBox(BeamBlockEntity blockEntity) {
 		return true;
-	}
-
-	@Override
-	public int getRenderDistance() {
-		return 256;
 	}
 
 	Vec3d rotate(Vec3d src, Vector2d rotation) {

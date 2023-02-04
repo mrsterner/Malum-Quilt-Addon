@@ -2,8 +2,6 @@ package dev.sterner.addon.client;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.sterner.addon.AddonClient;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Axis;

@@ -1,5 +1,6 @@
 package dev.sterner.addon.common;
 
+import dev.sterner.addon.Addon;
 import dev.sterner.malum.Malum;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -23,7 +24,7 @@ public interface AddonObjects {
 	Block BEAM_BLOCK = register("beam_block", new BeamBlock(QuiltBlockSettings.copyOf(Blocks.STONE)), true);
 
 	static <T extends Block> T register(String name, T block, boolean createItem) {
-		BLOCKS.put(block, new Identifier(Malum.MODID, name));
+		BLOCKS.put(block, Addon.id(name));
 		if (createItem) {
 			ITEMS.put(new BlockItem(block, settings()), BLOCKS.get(block));
 		}
@@ -31,7 +32,7 @@ public interface AddonObjects {
 	}
 
 	static <T extends Item> T register(String name, T item) {
-		ITEMS.put(item, new Identifier(Malum.MODID, name));
+		ITEMS.put(item, Addon.id(name));
 		return item;
 	}
 
