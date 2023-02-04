@@ -1,8 +1,7 @@
 package dev.sterner.addon.client.renderer.equipment.armor;
 
 import dev.sterner.addon.Addon;
-import dev.sterner.addon.client.models.equipment.HallowedGogglesModel;
-import dev.sterner.malum.Malum;
+import dev.sterner.addon.client.models.equipment.armor.HallowedGogglesModel;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;

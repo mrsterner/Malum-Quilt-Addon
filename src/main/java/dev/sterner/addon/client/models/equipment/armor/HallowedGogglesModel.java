@@ -1,4 +1,4 @@
-package dev.sterner.addon.client.models.equipment;
+package dev.sterner.addon.client.models.equipment.armor;
 
 import dev.sterner.addon.Addon;
 import net.minecraft.client.model.*;

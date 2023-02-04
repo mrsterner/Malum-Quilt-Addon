@@ -1,6 +1,7 @@
 package dev.sterner.addon;
 
 import dev.sterner.addon.common.registry.AddonBlockEntities;
+import dev.sterner.addon.common.registry.AddonEntityTypes;
 import dev.sterner.addon.common.registry.AddonObjects;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -22,6 +23,7 @@ public class Addon implements ModInitializer {
 	public void onInitialize(ModContainer mod) {
 		AddonObjects.init();
 		AddonBlockEntities.init();
+		AddonEntityTypes.init();
 
 		ItemGroupEvents.modifyEntriesEvent(MALUM_ADDON).register(entries -> {
 			entries.addItem(AddonObjects.HALLOWED_GOGGLES);

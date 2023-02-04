@@ -1,4 +1,4 @@
-package dev.sterner.addon.mixin;
+package dev.sterner.addon.mixin.client;
 
 import com.mojang.blaze3d.shader.ShaderStage;
 import com.mojang.datafixers.util.Pair;

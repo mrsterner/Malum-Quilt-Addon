@@ -21,7 +21,8 @@
 		"entrypoints": {
 			"init": "dev.sterner.addon.Addon",
 			"client_init": "dev.sterner.addon.AddonClient",
-			"mm:early_risers": "dev.sterner.addon.AddonEarlyRiser"
+			"mm:early_risers": "dev.sterner.addon.AddonEarlyRiser",
+			"cardinal-components-entity": "dev.mrsterner.addon.common.components.AddonComponents"
 		},
 		"depends": [
 			{
@@ -36,6 +37,11 @@
 				"id": "minecraft",
 				"versions": ">=1.19.3"
 			}
+		]
+	},
+	"custom": {
+		"cardinal-components": [
+			"addon:effigy"
 		]
 	},
 	"access_widener": "addon.accesswidener",
