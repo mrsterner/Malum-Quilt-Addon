@@ -34,4 +34,8 @@ public class MathUtils {
 		double dz = to.z - from.z;
 		return dx * dx + dy * dy + dz * dz;
 	}
+
+	public static float zeroToOne(float time, float strength){
+		return time * strength % 1.0F;
+	}
 }

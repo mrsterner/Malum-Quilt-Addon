@@ -20,7 +20,8 @@
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
 			"init": "dev.sterner.addon.Addon",
-			"client_init": "dev.sterner.addon.AddonClient"
+			"client_init": "dev.sterner.addon.AddonClient",
+			"mm:early_risers": "dev.sterner.addon.AddonEarlyRiser"
 		},
 		"depends": [
 			{

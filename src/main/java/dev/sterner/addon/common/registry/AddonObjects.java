@@ -2,6 +2,7 @@ package dev.sterner.addon.common.registry;
 
 import dev.sterner.addon.Addon;
 import dev.sterner.addon.common.block.BeamBlock;
+import dev.sterner.addon.common.item.HallowedGogglesItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -18,6 +19,7 @@ public interface AddonObjects {
 	Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 	Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
+	Item HALLOWED_GOGGLES = register("hallowed_goggles", new HallowedGogglesItem(settings()));
 	Block BEAM_BLOCK = register("beam_block", new BeamBlock(QuiltBlockSettings.copyOf(Blocks.STONE)), true);
 
 	static <T extends Block> T register(String name, T block, boolean createItem) {
