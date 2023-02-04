@@ -1,8 +1,8 @@
-package dev.sterner.addon.common;
+package dev.sterner.addon.common.util;
 
 import net.minecraft.util.math.Vec3d;
 
-public class Utils {
+public class MathUtils {
 	public static Vec3d calculateVelocity(Vec3d from, Vec3d to, double heightGain, double gravity) {
 		double endGain = to.y - from.y;
 		double horizDist = Math.sqrt(distanceSquared2d(from, to));

@@ -1,7 +1,7 @@
 package dev.sterner.addon;
 
-import dev.sterner.addon.common.AddonBlockEntities;
-import dev.sterner.addon.common.AddonObjects;
+import dev.sterner.addon.common.registry.AddonBlockEntities;
+import dev.sterner.addon.common.registry.AddonObjects;
 import net.minecraft.util.Identifier;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;

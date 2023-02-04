@@ -1,7 +1,7 @@
-package dev.sterner.addon.common;
+package dev.sterner.addon.common.registry;
 
 import dev.sterner.addon.Addon;
-import dev.sterner.malum.Malum;
+import dev.sterner.addon.common.block.BeamBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -9,13 +9,10 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.SignType;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import static dev.sterner.malum.common.registry.MalumObjects.settings;
 
 public interface AddonObjects {
 	Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();

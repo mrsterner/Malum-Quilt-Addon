@@ -1,7 +1,5 @@
 #version 150
 
-#moj_import <fog.glsl>
-
 uniform sampler2D Sampler0;
 uniform float GameTime;
 uniform float TimeOffset;
@@ -12,8 +10,6 @@ uniform float YFrequency;
 uniform vec4 UVCoordinates;
 
 uniform vec4 ColorModulator;
-uniform float FogStart;
-uniform float FogEnd;
 
 in float vertexDistance;
 in vec4 vertexColor;
@@ -28,13 +24,7 @@ void main() {
     vec2 vCap = vec2(UVCoordinates.z, UVCoordinates.w);
 
     uv.x += cos(uv.y*XFrequency+time)/Intensity;
-    //uv.y += sin(uv.x*YFrequency+time)/Intensity;
-
     uv.x = clamp(uv.x, uCap.x, uCap.y);
-    //uv.y = clamp(uv.y, vCap.x, vCap.y);
 
-
-    vec4 color = texture(Sampler0, uv) * vertexColor * ColorModulator;
-
-    fragColor = color ;//* linear_fog_fade(vertexDistance, FogStart, FogEnd);
+    fragColor = texture(Sampler0, uv) * vertexColor * ColorModulator;
 }

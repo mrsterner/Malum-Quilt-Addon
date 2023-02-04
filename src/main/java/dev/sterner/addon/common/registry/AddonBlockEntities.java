@@ -1,7 +1,6 @@
-package dev.sterner.addon.common;
+package dev.sterner.addon.common.registry;
 
-import dev.sterner.malum.common.blockentity.VoidConduitBlockEntity;
-import dev.sterner.malum.common.registry.MalumObjects;
+import dev.sterner.addon.common.blockentity.BeamBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;

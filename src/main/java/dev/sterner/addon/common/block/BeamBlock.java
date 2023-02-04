@@ -1,5 +1,6 @@
-package dev.sterner.addon.common;
+package dev.sterner.addon.common.block;
 
+import dev.sterner.addon.common.blockentity.BeamBlockEntity;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;

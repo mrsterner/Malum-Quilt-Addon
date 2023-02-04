@@ -1,10 +1,9 @@
-package dev.sterner.addon.client;
+package dev.sterner.addon.client.registry;
 
 import com.mojang.blaze3d.vertex.VertexFormats;
 import com.mojang.datafixers.util.Pair;
 import com.sammy.lodestone.systems.rendering.ExtendedShader;
 import com.sammy.lodestone.systems.rendering.ShaderHolder;
-import dev.sterner.malum.Malum;
 import net.minecraft.client.render.ShaderProgram;
 import net.minecraft.resource.ResourceFactory;
 import net.minecraft.util.Identifier;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class AddonShaderRegistry {
+public class AddonShaders {
 	public static List<Pair<ShaderProgram, Consumer<ShaderProgram>>> shaderList;
 
 	public static ShaderHolder BEAM = new ShaderHolder("Speed", "TimeOffset", "Intensity", "XFrequency", "YFrequency", "UVCoordinates");
