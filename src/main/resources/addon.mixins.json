@@ -8,7 +8,7 @@
     "common.ServerPlayerEntityMixin"
   ],
   "client": [
-    "GameRendererMixin"
+    "client.GameRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

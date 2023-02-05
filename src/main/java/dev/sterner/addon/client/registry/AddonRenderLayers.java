@@ -29,4 +29,22 @@ public class AddonRenderLayers {
 						.build(false)
 		);
 	}
+
+	public static RenderLayer getGlowy(Identifier texture) {
+		return RenderLayer.of("crystal",
+				VertexFormats.POSITION_COLOR_TEXTURE_OVERLAY_LIGHT_NORMAL,
+				VertexFormat.DrawMode.QUADS,
+				256,
+				false,
+				false,
+				RenderLayer.MultiPhaseParameters.builder()
+						.texture(new RenderPhase.Texture(texture, false, false))
+						.transparency(TRANSLUCENT_TRANSPARENCY)
+						.cull(DISABLE_CULLING)
+						.lightmap(ENABLE_LIGHTMAP)
+						.overlay(DISABLE_OVERLAY_COLOR)
+						.layering(VIEW_OFFSET_Z_LAYERING)
+						.shader(ENERGY_SWIRL_SHADER)
+						.build(true));
+	}
 }

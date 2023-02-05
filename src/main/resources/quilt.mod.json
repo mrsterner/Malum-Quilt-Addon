@@ -22,7 +22,7 @@
 			"init": "dev.sterner.addon.Addon",
 			"client_init": "dev.sterner.addon.AddonClient",
 			"mm:early_risers": "dev.sterner.addon.AddonEarlyRiser",
-			"cardinal-components-entity": "dev.mrsterner.addon.common.components.AddonComponents"
+			"cardinal-components-entity": "dev.sterner.addon.common.component.AddonComponents"
 		},
 		"depends": [
 			{
@@ -39,11 +39,9 @@
 			}
 		]
 	},
-	"custom": {
-		"cardinal-components": [
-			"addon:effigy"
-		]
-	},
+	"cardinal-components": [
+		"addon:effigy"
+	],
 	"access_widener": "addon.accesswidener",
 	"mixin": "addon.mixins.json"
 }

@@ -27,6 +27,8 @@ public class Addon implements ModInitializer {
 
 		ItemGroupEvents.modifyEntriesEvent(MALUM_ADDON).register(entries -> {
 			entries.addItem(AddonObjects.HALLOWED_GOGGLES);
+			entries.addItem(AddonObjects.ARCANE_CRYSTAL);
+			entries.addItem(AddonObjects.INFERNAL_CRYSTAL);
 		});
 	}
 

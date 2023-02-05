@@ -5,13 +5,25 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Arm;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
+import java.util.UUID;
 
 public class EffigyEntity extends LivingEntity {
+	public static final TrackedData<Optional<UUID>> PLAYER = DataTracker.registerData(EffigyEntity.class, TrackedDataHandlerRegistry.OPTIONAL_UUID);
+
 	private final DefaultedList<ItemStack> handItems;
 	private final DefaultedList<ItemStack> armorItems;
 
@@ -19,6 +31,32 @@ public class EffigyEntity extends LivingEntity {
 		super(entityType, world);
 		this.handItems = DefaultedList.ofSize(2, ItemStack.EMPTY);
 		this.armorItems = DefaultedList.ofSize(4, ItemStack.EMPTY);
+	}
+
+	@Override
+	protected void initDataTracker() {
+		super.initDataTracker();
+		this.dataTracker.startTracking(PLAYER, Optional.empty());
+	}
+
+	public UUID getPLayerUuid() {
+		return this.dataTracker.get(PLAYER).orElse(null);
+	}
+
+	public void setPlayerUuid(@Nullable UUID uuid) {
+		this.dataTracker.set(PLAYER, Optional.ofNullable(uuid));
+	}
+
+	@Override
+	public boolean damage(DamageSource source, float amount) {
+		boolean damage = super.damage(source, amount);
+		if(damage && getPLayerUuid() != null){
+			PlayerEntity player = world.getPlayerByUuid(getPLayerUuid());
+			if(player != null){
+				player.damage(source, MathHelper.clamp(amount, 0, amount / 4));
+			}
+		}
+		return damage;
 	}
 
 	@Override

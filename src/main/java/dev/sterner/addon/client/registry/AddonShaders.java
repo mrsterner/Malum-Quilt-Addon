@@ -18,7 +18,6 @@ public class AddonShaders {
 
 	public static ShaderHolder BEAM = new ShaderHolder("Speed", "TimeOffset", "Intensity", "XFrequency", "YFrequency", "UVCoordinates");
 
-
 	public static void init(ResourceFactory manager) throws IOException {
 		shaderList = new ArrayList<>();
 		registerShader(ExtendedShader.createShaderInstance(BEAM, manager, new Identifier("addon", "beam"), VertexFormats.POSITION_COLOR_TEXTURE));

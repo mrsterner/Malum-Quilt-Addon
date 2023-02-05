@@ -43,7 +43,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
 					effigyEntity.kill();
 					ServerWorld serverWorld = (ServerWorld) effigyEntity.world;
 					serverWorld.setChunkForced(effigyEntity.getChunkPos().x,effigyEntity.getChunkPos().z,false);
-					effigyComponent.setHasEffigy(false);
+					effigyComponent.hasEffigy(false);
 					effigyComponent.setEffigy(null);
 					ci.cancel();
 				}

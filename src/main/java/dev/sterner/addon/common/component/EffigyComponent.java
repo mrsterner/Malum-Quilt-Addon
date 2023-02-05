@@ -11,10 +11,10 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 public class EffigyComponent implements AutoSyncedComponent, ServerTickingComponent {
-
 	private UUID effigyEntity = null;
 	private final PlayerEntity player;
 	private boolean hasEffigy = false;
@@ -26,23 +26,24 @@ public class EffigyComponent implements AutoSyncedComponent, ServerTickingCompon
 	@Override
 	public void serverTick() {
 		if (effigyEntity != null) {
-			Entity effigyEntity = ((ServerWorld) player.world).getEntity(getEffigy());
-			if(effigyEntity instanceof EffigyEntity effigyEntity1){
-				if(!effigyEntity1.getStatusEffects().isEmpty()){
-					Map<StatusEffect, StatusEffectInstance> statusEffectsEffigy = effigyEntity1.getActiveStatusEffects();
+			Entity entity = ((ServerWorld) player.world).getEntity(getEffigy());
+			if(entity instanceof EffigyEntity effigy){
+				effigy.setPlayerUuid(player.getUuid());
+				if(!effigy.getStatusEffects().isEmpty()){
+					Map<StatusEffect, StatusEffectInstance> statusEffectsEffigy = effigy.getActiveStatusEffects();
 					statusEffectsEffigy.forEach((statusEffect, statusEffectInstance) -> player.addStatusEffect(statusEffectInstance));
 				}
-				ServerWorld serverWorld = (ServerWorld) effigyEntity.world;
-				serverWorld.setChunkForced(effigyEntity.getChunkPos().x,effigyEntity.getChunkPos().z,true);
+				ServerWorld serverWorld = (ServerWorld) effigy.world;
+				serverWorld.setChunkForced(effigy.getChunkPos().x, effigy.getChunkPos().z,true);
 			}
 		}
 	}
 
-	public void setHasEffigy(boolean hasEffigy){
+	public void hasEffigy(boolean hasEffigy){
 		this.hasEffigy = hasEffigy;
 	}
 
-	public boolean getHasEffigy(){
+	public boolean hasEffigy(){
 		return hasEffigy;
 	}
 
