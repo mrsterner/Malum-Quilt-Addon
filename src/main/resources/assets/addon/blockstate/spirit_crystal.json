@@ -1,10 +1,10 @@
 {
   "variants": {
     "waterlogged=false": {
-      "model": "addon:block/crystal"
+      "model": "addon:block/spirit_crystal"
     },
     "waterlogged=true": {
-      "model": "addon:block/crystal"
+      "model": "addon:block/spirit_crystal"
     }
   }
 }

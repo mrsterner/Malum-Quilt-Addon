@@ -3,6 +3,7 @@ package dev.sterner.addon;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
 import dev.sterner.addon.common.registry.AddonEntityTypes;
 import dev.sterner.addon.common.registry.AddonObjects;
+import dev.sterner.addon.common.registry.AddonSpiritTypes;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ItemGroup;
@@ -21,14 +22,16 @@ public class Addon implements ModInitializer {
 
 	@Override
 	public void onInitialize(ModContainer mod) {
+		AddonSpiritTypes.init();
 		AddonObjects.init();
 		AddonBlockEntities.init();
 		AddonEntityTypes.init();
 
+
 		ItemGroupEvents.modifyEntriesEvent(MALUM_ADDON).register(entries -> {
 			entries.addItem(AddonObjects.HALLOWED_GOGGLES);
-			entries.addItem(AddonObjects.ARCANE_CRYSTAL);
-			entries.addItem(AddonObjects.INFERNAL_CRYSTAL);
+			entries.addItem(AddonObjects.DAMNED_SPIRIT);
+			entries.addItem(AddonObjects.SPIRIT_CRYSTAL);
 		});
 	}
 

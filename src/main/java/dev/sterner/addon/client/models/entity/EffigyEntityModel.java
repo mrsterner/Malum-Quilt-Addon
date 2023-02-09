@@ -2,15 +2,11 @@ package dev.sterner.addon.client.models.entity;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.sterner.addon.Addon;
-import dev.sterner.addon.common.entity.EffigyEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 
 public class EffigyEntityModel extends Model {
 	public static final EntityModelLayer LAYER = new EntityModelLayer(Addon.id("effigy"), "main");

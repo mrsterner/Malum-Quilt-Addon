@@ -8,10 +8,12 @@ import dev.sterner.addon.client.renderer.BeamBlockEntityRenderer;
 import dev.sterner.addon.client.renderer.blockentity.CrystalBlockEntityRenderer;
 import dev.sterner.addon.client.renderer.entity.EffigyEntityRenderer;
 import dev.sterner.addon.client.renderer.equipment.armor.HallowedGogglesRenderer;
+import dev.sterner.addon.common.block.CrystalBlock;
 import dev.sterner.addon.common.blockentity.CrystalBlockEntity;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
 import dev.sterner.addon.common.registry.AddonEntityTypes;
 import dev.sterner.addon.common.registry.AddonObjects;
+import dev.sterner.addon.common.registry.AddonSpiritTypes;
 import dev.sterner.addon.common.util.RenderUtils;
 import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
 import dev.sterner.malum.common.recipe.SpiritInfusionRecipe;
@@ -19,6 +21,7 @@ import dev.sterner.malum.common.recipe.SpiritWithCount;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
@@ -50,13 +53,9 @@ public class AddonClient implements ClientModInitializer {
 
 		ArmorRenderer.register(new HallowedGogglesRenderer(), AddonObjects.HALLOWED_GOGGLES);
 
-		BuiltinItemRendererRegistry.INSTANCE.register(AddonObjects.ARCANE_CRYSTAL, (stack, mode, matrices, vertexConsumers, light, overlay) ->
-				MinecraftClient.getInstance().getBlockEntityRenderDispatcher().renderEntity(
-						new CrystalBlockEntity(BlockPos.ORIGIN, AddonObjects.ARCANE_CRYSTAL.getDefaultState(), MalumSpiritTypeRegistry.ARCANE_SPIRIT.getColor()),
-						matrices, vertexConsumers, light, overlay));
-
-
-		BlockRenderLayerMap.put(RenderLayer.getCutout(), AddonObjects.ARCANE_CRYSTAL, AddonObjects.INFERNAL_CRYSTAL);
+		BlockRenderLayerMap.put(RenderLayer.getCutout(), AddonObjects.SPIRIT_CRYSTAL);
+		ColorProviderRegistry.ITEM.register((itemStack, index) -> 0xffffff, AddonObjects.SPIRIT_CRYSTAL);
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> AddonSpiritTypes.DAMNED_SPIRIT.getColor().getRGB(), AddonObjects.DAMNED_SPIRIT);
 
 		HudRenderCallback.EVENT.register((matrixStack, tickDelta) -> {
 			MinecraftClient client = MinecraftClient.getInstance();

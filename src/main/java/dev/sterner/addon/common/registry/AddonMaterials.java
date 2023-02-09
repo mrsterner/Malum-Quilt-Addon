@@ -7,11 +7,10 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 
-public class AddonMaterials {
-	public AddonMaterials() {
-	}
+public interface AddonMaterials {
 
-	public static enum ArmorMaterialEnum implements ArmorMaterial {
+
+	enum ArmorMaterialEnum implements ArmorMaterial {
 		HALLOWED("malum:hallowed", 16, new int[]{1, 3, 4, 2}, 25, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, MalumObjects.HALLOWED_GOLD_INGOT, 0.0F);
 
 		private final String name;
@@ -23,7 +22,7 @@ public class AddonMaterials {
 		private final float toughness;
 		private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
 
-		private ArmorMaterialEnum(String name, int durabilityMultiplier, int[] damageReduction, int enchantability, SoundEvent equipSound, Item repairItem, float toughness) {
+		ArmorMaterialEnum(String name, int durabilityMultiplier, int[] damageReduction, int enchantability, SoundEvent equipSound, Item repairItem, float toughness) {
 			this.name = name;
 			this.durabilityMultiplier = durabilityMultiplier;
 			this.damageReduction = damageReduction;

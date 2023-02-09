@@ -4,6 +4,7 @@
   "package": "dev.sterner.addon.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "MalumSpiritTypeMixin",
     "common.LivingEntityMixin",
     "common.ServerPlayerEntityMixin"
   ],

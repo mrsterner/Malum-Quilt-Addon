@@ -1,56 +1,94 @@
 package dev.sterner.addon.common.blockentity;
 
-import com.sammy.lodestone.setup.LodestoneParticles;
+import com.sammy.lodestone.setup.LodestoneParticleRegistry;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
-import com.sammy.lodestone.systems.rendering.particle.Easing;
-import com.sammy.lodestone.systems.rendering.particle.ParticleBuilders;
+import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
+import com.sammy.lodestone.systems.particle.data.ColorParticleData;
+import com.sammy.lodestone.systems.particle.data.GenericParticleData;
+import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
-import net.fabricmc.fabric.impl.client.indigo.renderer.helper.ColorHelper;
+import dev.sterner.addon.common.registry.AddonSpiritTypes;
+import dev.sterner.malum.common.spirit.MalumSpiritType;
+import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
 import java.awt.*;
 
 public class CrystalBlockEntity extends LodestoneBlockEntity {
-	public Color color;
-	public CrystalBlockEntity(BlockPos pos, BlockState state, Color color) {
+	public int MAX_POWER = 256;
+	public int power = 0;
+	public MalumSpiritType type;
+	public boolean loop = true;
+
+	public CrystalBlockEntity(BlockPos pos, BlockState state, MalumSpiritType type) {
 		super(AddonBlockEntities.CRYSTAL, pos, state);
-		this.color = color;
+		this.type = type;
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		if(type == null){
+			type = AddonSpiritTypes.DAMNED_SPIRIT;
+		}
+		if(loop){
+			if(power > MAX_POWER){
+				loop = false;
+			}
+			power++;
+		}else{
+			if(power <= 0){
+				loop = true;
+			}
+			power--;
+		}
 	}
 
 	@Override
 	public void readNbt(NbtCompound nbt) {
-		this.color = new Color(nbt.getInt("Color"));
+		if (nbt.contains("spirit")) {
+			type = SpiritHelper.getSpiritType(nbt.getString("spirit"));
+		} else {
+			type = null;
+		}
+		if(nbt.contains("power")) {
+			power = nbt.getInt("power");
+		} else {
+			power = 0;
+		}
 		super.readNbt(nbt);
 	}
 
 	@Override
 	protected void writeNbt(NbtCompound nbt) {
-		nbt.putInt("Color", color.getRGB());
+		if (type != null) {
+			nbt.putString("spirit", type.identifier);
+		}
+		if(power != 0){
+			nbt.putInt("power", power);
+		}
 		super.writeNbt(nbt);
 	}
 
 	@Override
 	public void clientTick() {
 		super.clientTick();
-		int lifeTime = 14 + world.random.nextInt(4);
-		float scale = 0.17f + world.random.nextFloat() * 0.03f;
-		float velocity = 0.04f + world.random.nextFloat() * 0.02f;
-		double x = pos.getX() + 0.5;
-		double y = pos.getY() + 0.6;
-		double z = pos.getZ() + 0.5;
-		ParticleBuilders.create(LodestoneParticles.SPARKLE_PARTICLE)
-				.setScale(scale * 2, 0)
-				.setLifetime(lifeTime)
-				.setAlpha(0.2f)
-				.setColor(color, color)
-				.setColorCoefficient(1.5f)
-				.setAlphaCoefficient(1.5f)
-				.setSpin(0, 2)
-				.setSpinEasing(Easing.QUARTIC_IN)
-				.enableNoClip()
-				.spawn(world, x, y, z);
+		if(power >= MAX_POWER / 2){
+			Color color = type.getColor();
+			WorldParticleBuilder.create(LodestoneParticleRegistry.TWINKLE_PARTICLE)
+					.setTransparencyData(GenericParticleData.create(0.15f, 0f).build())
+					.setScaleData(GenericParticleData.create(0.3f, 0).build())
+					.setSpinData(SpinParticleData.create(0.2f).build())
+					.setColorData(ColorParticleData.create(color, color.darker()).build())
+					.setLifetime(20)
+					.setRandomMotion(0.02f)
+					.setRandomOffset(0.1f, 0.1f)
+					.enableNoClip()
+					.repeat(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, 4 * (1 + (int)(power / MAX_POWER)));
+		}
+
+
 	}
 }

@@ -5,6 +5,7 @@ import dev.sterner.addon.common.block.BeamBlock;
 import dev.sterner.addon.common.block.CrystalBlock;
 import dev.sterner.addon.common.item.CrystalBlockItem;
 import dev.sterner.addon.common.item.HallowedGogglesItem;
+import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -19,20 +20,23 @@ import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static dev.sterner.malum.common.registry.MalumObjects.settings;
+
 public interface AddonObjects {
 	Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();
 	Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
 	Item HALLOWED_GOGGLES = register("hallowed_goggles", new HallowedGogglesItem(settings()));
+	Item DAMNED_SPIRIT = register("damned_spirit", new MalumSpiritItem(settings(), AddonSpiritTypes.DAMNED_SPIRIT));
+
 	Block BEAM_BLOCK = register("beam_block", new BeamBlock(QuiltBlockSettings.copyOf(Blocks.STONE)), true);
 
-	Block ARCANE_CRYSTAL = registerCrystal("arcane_crystal", new CrystalBlock(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK), MalumSpiritTypeRegistry.ARCANE_SPIRIT.getColor()));
-	Block INFERNAL_CRYSTAL = registerCrystal("infernal_crystal", new CrystalBlock(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK), MalumSpiritTypeRegistry.INFERNAL_SPIRIT.getColor()));
+	Block SPIRIT_CRYSTAL = registerCrystal("spirit_crystal", new CrystalBlock(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)));
 
 
 	static CrystalBlock registerCrystal(String name, CrystalBlock block) {
 		BLOCKS.put(block, Addon.id(name));
-		ITEMS.put(new CrystalBlockItem(block, settings(), block.color), BLOCKS.get(block));
+		ITEMS.put(new CrystalBlockItem(block, settings(), block.type), BLOCKS.get(block));
 		return block;
 	}
 

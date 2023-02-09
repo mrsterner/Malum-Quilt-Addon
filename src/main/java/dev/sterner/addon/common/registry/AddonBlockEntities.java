@@ -18,10 +18,7 @@ public interface AddonBlockEntities {
 	Map<Identifier, BlockEntityType<?>> BLOCK_ENTITY_TYPES  = new LinkedHashMap<>();
 
 	BlockEntityType<BeamBlockEntity> BEAM = register("beam", QuiltBlockEntityTypeBuilder.create(BeamBlockEntity::new, AddonObjects.BEAM_BLOCK).build(null));
-	BlockEntityType<CrystalBlockEntity> CRYSTAL = register("crystal", QuiltBlockEntityTypeBuilder.create((blockPos, blockState) ->  new CrystalBlockEntity(blockPos, blockState, null),
-			AddonObjects.ARCANE_CRYSTAL,
-			AddonObjects.INFERNAL_CRYSTAL
-	).build(null));
+	BlockEntityType<CrystalBlockEntity> CRYSTAL = register("crystal", QuiltBlockEntityTypeBuilder.create((blockPos, blockState) ->  new CrystalBlockEntity(blockPos, blockState, null), AddonObjects.SPIRIT_CRYSTAL).build(null));
 
 
 	static <T extends BlockEntity> BlockEntityType<T> register(String id, BlockEntityType<T> type) {

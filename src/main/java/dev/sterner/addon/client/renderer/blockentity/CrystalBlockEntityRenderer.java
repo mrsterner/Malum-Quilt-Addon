@@ -3,21 +3,12 @@ package dev.sterner.addon.client.renderer.blockentity;
 import dev.sterner.addon.Addon;
 import dev.sterner.addon.client.models.blockentity.CrystalBlockEntityModel;
 import dev.sterner.addon.client.registry.AddonRenderLayers;
-import dev.sterner.addon.common.block.CrystalBlock;
 import dev.sterner.addon.common.blockentity.CrystalBlockEntity;
-import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRenderer;
-import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
-import net.fabricmc.fabric.impl.client.indigo.renderer.helper.ColorHelper;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-
-import java.awt.*;
+import net.minecraft.util.math.MathHelper;
 
 public class CrystalBlockEntityRenderer implements BlockEntityRenderer<CrystalBlockEntity> {
 	private final CrystalBlockEntityModel model;
@@ -25,17 +16,31 @@ public class CrystalBlockEntityRenderer implements BlockEntityRenderer<CrystalBl
 		model = new CrystalBlockEntityModel(ctx.getLayerModelPart(CrystalBlockEntityModel.LAYER));
 	}
 
+	public static float QuadEaseInOut(float time) {
+		return time < 0.5f ? 2.0f * time * time : -1.0f + (4.0f - 2.0f * time) * time;
+	}
+
 	@Override
 	public void render(CrystalBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+		float r = 1f;
+		float g = 1f;
+		float b = 1f;
 
-		int	r = entity.color.getRed();
-		int g = entity.color.getGreen();
-		int b = entity.color.getBlue();
 
+
+		if(entity.type != null){
+			float colorMultiplier = MathHelper.clamp((1 + (float)entity.power) / (entity.MAX_POWER), 0 , 1);// goes from 0 -> 1
+
+
+
+			r = colorMultiplier * (1 - entity.type.getColor().getRed() / 255f);
+			g = colorMultiplier * (1 - entity.type.getColor().getGreen() / 255f);
+			b = colorMultiplier * (1 - entity.type.getColor().getBlue() / 255f);
+		}
 
 		matrices.push();
 		matrices.translate(0.5,-0.5,0.5);
-		model.main.render(matrices, vertexConsumers.getBuffer(AddonRenderLayers.getGlowy(Addon.id("textures/block/crystal.png"))), light, overlay, 1 - r,1 - g, 1 - b,1);
+		model.main.render(matrices, vertexConsumers.getBuffer(AddonRenderLayers.getGlowy(Addon.id("textures/block/crystal.png"))), light, overlay, 1 - r ,1 - g,1 - b,1);
 		matrices.pop();
 	}
 }

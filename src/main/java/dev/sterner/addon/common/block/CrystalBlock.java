@@ -3,6 +3,9 @@ package dev.sterner.addon.common.block;
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.addon.common.blockentity.CrystalBlockEntity;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
+import dev.sterner.addon.common.registry.AddonSpiritTypes;
+import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
+import dev.sterner.malum.common.spirit.MalumSpiritType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -14,13 +17,10 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
-
 public class CrystalBlock<T extends CrystalBlockEntity> extends WaterLoggedEntityBlock<T> {
-	public Color color;
-	public CrystalBlock(Settings settings, Color color) {
+	public MalumSpiritType type = AddonSpiritTypes.DAMNED_SPIRIT;
+	public CrystalBlock(Settings settings) {
 		super(settings.nonOpaque());
-		this.color = color;
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class CrystalBlock<T extends CrystalBlockEntity> extends WaterLoggedEntit
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		setBlockEntity((BlockEntityType<T>) AddonBlockEntities.CRYSTAL);
-		return new CrystalBlockEntity(pos, state, color);
+		return new CrystalBlockEntity(pos, state, type);
 	}
 
 	@Override
