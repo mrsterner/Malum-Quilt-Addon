@@ -52,7 +52,6 @@ public class AddonClient implements ClientModInitializer {
 		EntityModelLayerRegistry.registerModelLayer(HallowedGogglesModel.LAYER, HallowedGogglesModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(EffigyEntityModel.LAYER, EffigyEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(CrystalBlockEntityModel.LAYER, CrystalBlockEntityModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(WillowEntityModel.LAYER, WillowEntityModel::getTexturedModelData);
 
 		//ARMOR
 		ArmorRenderer.register(new HallowedGogglesRenderer(), AddonObjects.HALLOWED_GOGGLES);

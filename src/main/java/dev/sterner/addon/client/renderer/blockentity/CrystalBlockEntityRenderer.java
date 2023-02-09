@@ -16,23 +16,14 @@ public class CrystalBlockEntityRenderer implements BlockEntityRenderer<CrystalBl
 		model = new CrystalBlockEntityModel(ctx.getLayerModelPart(CrystalBlockEntityModel.LAYER));
 	}
 
-	public static float QuadEaseInOut(float time) {
-		return time < 0.5f ? 2.0f * time * time : -1.0f + (4.0f - 2.0f * time) * time;
-	}
-
 	@Override
 	public void render(CrystalBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		float r = 1f;
 		float g = 1f;
 		float b = 1f;
 
-
-
 		if(entity.type != null){
 			float colorMultiplier = MathHelper.clamp((1 + (float)entity.power) / (entity.MAX_POWER), 0 , 1);// goes from 0 -> 1
-
-
-
 			r = colorMultiplier * (1 - entity.type.getColor().getRed() / 255f);
 			g = colorMultiplier * (1 - entity.type.getColor().getGreen() / 255f);
 			b = colorMultiplier * (1 - entity.type.getColor().getBlue() / 255f);

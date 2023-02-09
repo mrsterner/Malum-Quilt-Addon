@@ -1,7 +1,7 @@
 plugins {
 	id 'maven-publish'
 	id 'io.github.juuxel.loom-quiltflower' version '1.8.+'
-	id 'org.quiltmc.loom' version '1.+'
+	id 'org.quiltmc.loom' version '1.0+'
 }
 
 archivesBaseName = project.archives_base_name
@@ -38,6 +38,14 @@ repositories {
 	maven {
 		name = "Reach Entity Attributes"
 		url = "https://maven.jamieswhiteshirt.com/libs-release"
+	}
+	maven {
+		name = "GeckoLib"
+		url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+	}
+	maven {
+		name = "Quilt"
+		url = "https://maven.quiltmc.org/repository/snapshot"
 	}
 	mavenCentral()
 }
@@ -76,13 +84,15 @@ dependencies {
 	modRuntimeOnly("maven.modrinth:sodium:${project.sodium}")
 
 	modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach}")
-	modImplementation include("maven.modrinth:midnightlib:$midnightlib_version")
+	modImplementation("maven.modrinth:midnightlib:$midnightlib_version")
 
 	modImplementation include("com.github.mrsterner:Malum-Quilt:$malum_version")
 	modImplementation include("com.github.mrsterner:LodestoneLib-Quilt:$lodestone_version")
 
 	implementation("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
 	include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras}")
+
+	modImplementation "software.bernie.geckolib:geckolib-quilt-${project.minecraft_version}:${project.gecko_lib}"
 }
 
 processResources {
