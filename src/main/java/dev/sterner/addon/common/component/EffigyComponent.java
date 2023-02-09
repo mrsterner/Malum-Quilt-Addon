@@ -11,7 +11,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 public class EffigyComponent implements AutoSyncedComponent, ServerTickingComponent {

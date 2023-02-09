@@ -1,7 +1,6 @@
 package dev.sterner.addon.client.renderer;
 
 import dev.sterner.addon.Addon;
-import dev.sterner.addon.AddonClient;
 import dev.sterner.addon.client.registry.AddonRenderLayers;
 import dev.sterner.addon.common.blockentity.BeamBlockEntity;
 import dev.sterner.addon.common.util.MathUtils;

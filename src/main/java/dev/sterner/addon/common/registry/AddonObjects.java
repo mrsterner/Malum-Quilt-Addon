@@ -6,7 +6,6 @@ import dev.sterner.addon.common.block.CrystalBlock;
 import dev.sterner.addon.common.item.CrystalBlockItem;
 import dev.sterner.addon.common.item.HallowedGogglesItem;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
-import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -16,11 +15,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 
-import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import static dev.sterner.malum.common.registry.MalumObjects.settings;
 
 public interface AddonObjects {
 	Map<Block, Identifier> BLOCKS = new LinkedHashMap<>();

@@ -1,10 +1,8 @@
 package dev.sterner.addon.mixin;
 
 import dev.sterner.addon.common.registry.AddonObjects;
-import dev.sterner.malum.common.registry.MalumObjects;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import net.minecraft.item.Item;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

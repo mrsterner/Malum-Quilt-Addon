@@ -4,7 +4,6 @@ import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
 import dev.sterner.addon.common.blockentity.CrystalBlockEntity;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
 import dev.sterner.addon.common.registry.AddonSpiritTypes;
-import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
