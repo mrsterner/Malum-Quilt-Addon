@@ -3,6 +3,7 @@ package dev.sterner.addon.common.registry;
 import dev.sterner.addon.Addon;
 import dev.sterner.addon.common.entity.ArcaneGolemEntity;
 import dev.sterner.addon.common.entity.EffigyEntity;
+import dev.sterner.addon.common.entity.WillowEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -30,6 +31,13 @@ public interface AddonEntityTypes {
 			.entityFactory(ArcaneGolemEntity::new)
 			.setDimensions(EntityDimensions.fixed(0.6F, 1.8F))
 			.defaultAttributes(ArcaneGolemEntity.createAttributes())
+			.build());
+
+	EntityType<WillowEntity> WILLOW = register("willow", QuiltEntityTypeBuilder
+			.<WillowEntity>createLiving()
+			.entityFactory(WillowEntity::new)
+			.setDimensions(EntityDimensions.fixed(0.6F, 0.8F))
+			.defaultAttributes(WillowEntity.createAttributes())
 			.build());
 
 	static <T extends Entity> EntityType<T> register(String name, EntityType<T> type) {

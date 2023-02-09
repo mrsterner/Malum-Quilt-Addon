@@ -3,10 +3,12 @@ package dev.sterner.addon;
 import com.sammy.lodestone.systems.recipe.IngredientWithCount;
 import dev.sterner.addon.client.models.blockentity.CrystalBlockEntityModel;
 import dev.sterner.addon.client.models.entity.EffigyEntityModel;
+import dev.sterner.addon.client.models.entity.WillowEntityModel;
 import dev.sterner.addon.client.models.equipment.armor.HallowedGogglesModel;
 import dev.sterner.addon.client.renderer.BeamBlockEntityRenderer;
 import dev.sterner.addon.client.renderer.blockentity.CrystalBlockEntityRenderer;
 import dev.sterner.addon.client.renderer.entity.EffigyEntityRenderer;
+import dev.sterner.addon.client.renderer.entity.WillowEntityRenderer;
 import dev.sterner.addon.client.renderer.equipment.armor.HallowedGogglesRenderer;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
 import dev.sterner.addon.common.registry.AddonEntityTypes;
@@ -44,11 +46,13 @@ public class AddonClient implements ClientModInitializer {
 
 		//ENTITY
 		EntityRendererRegistry.register(AddonEntityTypes.EFFIGY, EffigyEntityRenderer::new);
+		EntityRendererRegistry.register(AddonEntityTypes.WILLOW, WillowEntityRenderer::new);
 
 		//LAYERS
 		EntityModelLayerRegistry.registerModelLayer(HallowedGogglesModel.LAYER, HallowedGogglesModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(EffigyEntityModel.LAYER, EffigyEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(CrystalBlockEntityModel.LAYER, CrystalBlockEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(WillowEntityModel.LAYER, WillowEntityModel::getTexturedModelData);
 
 		//ARMOR
 		ArmorRenderer.register(new HallowedGogglesRenderer(), AddonObjects.HALLOWED_GOGGLES);
@@ -57,7 +61,7 @@ public class AddonClient implements ClientModInitializer {
 		ColorProviderRegistry.ITEM.register((itemStack, index) -> 0xffffff, AddonObjects.SPIRIT_CRYSTAL);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> AddonSpiritTypes.DAMNED_SPIRIT.getColor().getRGB(), AddonObjects.DAMNED_SPIRIT);
 
-		//INIT
+		//EVENT
 		HudRenderCallback.EVENT.register(this::spiritAltarRecipeHud);
 	}
 
