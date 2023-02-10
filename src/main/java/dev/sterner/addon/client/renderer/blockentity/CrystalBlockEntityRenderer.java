@@ -18,9 +18,9 @@ public class CrystalBlockEntityRenderer implements BlockEntityRenderer<CrystalBl
 
 	@Override
 	public void render(CrystalBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		float r = 1f;
-		float g = 1f;
-		float b = 1f;
+		float r = -1f;
+		float g = -1f;
+		float b = -1f;
 
 		if(entity.type != null){
 			float colorMultiplier = MathHelper.clamp((1 + (float)entity.power) / (entity.MAX_POWER), 0 , 1);// goes from 0 -> 1

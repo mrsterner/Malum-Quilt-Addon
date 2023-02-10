@@ -8,7 +8,7 @@ import java.awt.Color;
 
 public interface AddonSpiritTypes {
 
-	MalumSpiritType DAMNED_SPIRIT = MalumSpiritTypeRegistry.create("damned", new Color(175, 0, 42), MalumObjects.SACRED_SPIRIT);
+	MalumSpiritType DAMNED_SPIRIT = MalumSpiritTypeRegistry.create("damned", new Color(175, 0, 42));
 
 	static void init(){
 

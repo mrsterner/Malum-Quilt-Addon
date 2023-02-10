@@ -23,7 +23,7 @@ public interface AddonObjects {
 	Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
 	Item HALLOWED_GOGGLES = register("hallowed_goggles", new HallowedGogglesItem(settings()));
-	Item DAMNED_SPIRIT = register("damned_spirit", new MalumSpiritItem(settings(), AddonSpiritTypes.DAMNED_SPIRIT));
+	MalumSpiritItem DAMNED_SPIRIT = register("damned_spirit", new MalumSpiritItem(settings(), AddonSpiritTypes.DAMNED_SPIRIT));
 
 	Block BEAM_BLOCK = register("beam_block", new BeamBlock(QuiltBlockSettings.copyOf(Blocks.STONE)), true);
 
