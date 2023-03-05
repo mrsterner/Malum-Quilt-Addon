@@ -10,12 +10,13 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class VoidHand extends PathAwareEntity implements GeoEntity {
+public class VoidHandEntity extends PathAwareEntity implements GeoEntity {
 	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-	public VoidHand(EntityType<? extends PathAwareEntity> entityType, World world) {
+	public VoidHandEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
 		super(entityType, world);
 	}
 
@@ -27,8 +28,17 @@ public class VoidHand extends PathAwareEntity implements GeoEntity {
 	}
 
 	@Override
+	public boolean isInvulnerable() {
+		return true; //TODO make it be able to be slain with special sword
+	}
+
+	@Override
+	public void takeKnockback(double strength, double x, double z) {
+	}
+
+	@Override
 	public void registerControllers(AnimatableManager.ControllerRegistrar controller) {
-		controller.add(DefaultAnimations.genericIdleController(this));
+		controller.add(DefaultAnimations.genericIdleController(this).setAnimationSpeed(0.5f));
 	}
 
 	@Override
