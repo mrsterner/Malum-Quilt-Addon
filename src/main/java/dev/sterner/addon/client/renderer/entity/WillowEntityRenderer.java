@@ -9,17 +9,17 @@ import com.sammy.lodestone.systems.particle.data.SpinParticleData;
 import dev.sterner.addon.client.models.entity.WillowEntityModel;
 import dev.sterner.addon.common.entity.WillowEntity;
 import dev.sterner.addon.common.registry.AddonSpiritTypes;
-import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
-import net.minecraft.client.render.RenderLayer;
+import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.BatEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 import java.awt.*;
+
+import static dev.sterner.addon.common.entity.WillowEntity.SPIRIT_TYPE;
 
 public class WillowEntityRenderer extends GeoEntityRenderer<WillowEntity> {
 	public MalumSpiritType type;
@@ -28,6 +28,14 @@ public class WillowEntityRenderer extends GeoEntityRenderer<WillowEntity> {
 	public WillowEntityRenderer(EntityRendererFactory.Context renderManager) {
 		super(renderManager, new WillowEntityModel());
 		type = AddonSpiritTypes.DAMNED_SPIRIT;
+	}
+
+	@Override
+	public void preRender(MatrixStack poseStack, WillowEntity animatable, BakedGeoModel model, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+		if(!animatable.getDataTracker().get(SPIRIT_TYPE).isEmpty()){
+			type = SpiritHelper.getSpiritType(animatable.getDataTracker().get(SPIRIT_TYPE));
+		}
 	}
 
 	@Override

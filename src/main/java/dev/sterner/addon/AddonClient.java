@@ -8,6 +8,7 @@ import dev.sterner.addon.client.models.equipment.armor.HallowedGogglesModel;
 import dev.sterner.addon.client.renderer.BeamBlockEntityRenderer;
 import dev.sterner.addon.client.renderer.blockentity.CrystalBlockEntityRenderer;
 import dev.sterner.addon.client.renderer.entity.EffigyEntityRenderer;
+import dev.sterner.addon.client.renderer.entity.VoidEntityRenderer;
 import dev.sterner.addon.client.renderer.entity.WillowEntityRenderer;
 import dev.sterner.addon.client.renderer.equipment.armor.HallowedGogglesRenderer;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
@@ -47,6 +48,7 @@ public class AddonClient implements ClientModInitializer {
 		//ENTITY
 		EntityRendererRegistry.register(AddonEntityTypes.EFFIGY, EffigyEntityRenderer::new);
 		EntityRendererRegistry.register(AddonEntityTypes.WILLOW, WillowEntityRenderer::new);
+		EntityRendererRegistry.register(AddonEntityTypes.VOID, VoidEntityRenderer::new);
 
 		//LAYERS
 		EntityModelLayerRegistry.registerModelLayer(HallowedGogglesModel.LAYER, HallowedGogglesModel::getTexturedModelData);

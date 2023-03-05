@@ -1,7 +1,8 @@
 package dev.sterner.addon.common.registry;
 
 import dev.sterner.addon.Addon;
-import dev.sterner.addon.common.entity.ArcaneGolemEntity;
+import dev.sterner.addon.common.entity.VoidHand;
+import dev.sterner.addon.common.entity.golem.ArcaneGolemEntity;
 import dev.sterner.addon.common.entity.EffigyEntity;
 import dev.sterner.addon.common.entity.WillowEntity;
 import net.minecraft.entity.Entity;
@@ -38,6 +39,13 @@ public interface AddonEntityTypes {
 			.entityFactory(WillowEntity::new)
 			.setDimensions(EntityDimensions.fixed(0.6F, 0.8F))
 			.defaultAttributes(WillowEntity.createAttributes())
+			.build());
+
+	EntityType<VoidHand> VOID = register("void", QuiltEntityTypeBuilder
+			.<VoidHand>createLiving()
+			.entityFactory(VoidHand::new)
+			.setDimensions(EntityDimensions.fixed(0.6F, 0.8F))
+			.defaultAttributes(VoidHand.createAttributes())
 			.build());
 
 	static <T extends Entity> EntityType<T> register(String name, EntityType<T> type) {

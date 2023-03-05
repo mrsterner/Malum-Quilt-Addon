@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Dynamic;
-import dev.sterner.addon.common.entity.ArcaneGolemEntity;
+import dev.sterner.addon.common.entity.golem.ArcaneGolemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.Activity;
 import net.minecraft.entity.ai.brain.Brain;
@@ -14,6 +14,8 @@ import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.brain.task.*;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.unmapped.C_rcqaryar;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ServerWorldAccess;
 
 import java.util.List;
 import java.util.Optional;
@@ -113,4 +115,9 @@ public class GolemBrain {
 
 		return Optional.empty();
 	}
+
+	//TODO add memory module for home
+    public static void setHome(ServerWorldAccess world, BlockPos blockPos) {
+
+    }
 }
