@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "waterlogged=false": {
+      "model": "addon:block/spirit_crystal_ground"
+    },
+    "waterlogged=true": {
+      "model": "addon:block/spirit_crystal_ground"
+    }
+  }
+}

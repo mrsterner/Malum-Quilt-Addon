@@ -90,8 +90,11 @@ public class VoidHandEntity extends MobEntity implements GeoEntity {
 	}
 
 	private PlayState idle(AnimationState<VoidHandEntity> state) {
-		state.setAnimation(RawAnimation.begin().thenLoop("misc.idle"));
-		return PlayState.CONTINUE;
+		if (getSpawnTimer() <= 0) {
+			state.setAnimation(RawAnimation.begin().thenLoop("misc.idle"));
+			return PlayState.CONTINUE;
+		}
+		return PlayState.STOP;
 	}
 
 	private PlayState emerge(AnimationState<VoidHandEntity> state) {
@@ -101,6 +104,8 @@ public class VoidHandEntity extends MobEntity implements GeoEntity {
 		}
 		return PlayState.STOP;
 	}
+
+
 
 	@Override
 	protected void playHurtSound(DamageSource source) {

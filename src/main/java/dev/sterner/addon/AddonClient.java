@@ -2,11 +2,13 @@ package dev.sterner.addon;
 
 import com.sammy.lodestone.systems.recipe.IngredientWithCount;
 import dev.sterner.addon.client.models.blockentity.CrystalBlockEntityModel;
+import dev.sterner.addon.client.models.blockentity.CrystalGroundBlockEntityModel;
 import dev.sterner.addon.client.models.entity.EffigyEntityModel;
 import dev.sterner.addon.client.models.entity.WillowEntityModel;
 import dev.sterner.addon.client.models.equipment.armor.HallowedGogglesModel;
 import dev.sterner.addon.client.renderer.BeamBlockEntityRenderer;
 import dev.sterner.addon.client.renderer.blockentity.CrystalBlockEntityRenderer;
+import dev.sterner.addon.client.renderer.blockentity.CrystalGroundBlockEntityRenderer;
 import dev.sterner.addon.client.renderer.entity.EffigyEntityRenderer;
 import dev.sterner.addon.client.renderer.entity.VoidEntityRenderer;
 import dev.sterner.addon.client.renderer.entity.WillowEntityRenderer;
@@ -43,6 +45,7 @@ public class AddonClient implements ClientModInitializer {
 		//BLOCKS
 		BlockEntityRendererFactories.register(AddonBlockEntities.BEAM, BeamBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(AddonBlockEntities.CRYSTAL, CrystalBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(AddonBlockEntities.CRYSTAL_GROUND, CrystalGroundBlockEntityRenderer::new);
 		BlockRenderLayerMap.put(RenderLayer.getCutout(), AddonObjects.SPIRIT_CRYSTAL);
 
 		//ENTITY
@@ -54,6 +57,7 @@ public class AddonClient implements ClientModInitializer {
 		EntityModelLayerRegistry.registerModelLayer(HallowedGogglesModel.LAYER, HallowedGogglesModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(EffigyEntityModel.LAYER, EffigyEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(CrystalBlockEntityModel.LAYER, CrystalBlockEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(CrystalGroundBlockEntityModel.LAYER, CrystalGroundBlockEntityModel::getTexturedModelData);
 
 		//ARMOR
 		ArmorRenderer.register(new HallowedGogglesRenderer(), AddonObjects.HALLOWED_GOGGLES);

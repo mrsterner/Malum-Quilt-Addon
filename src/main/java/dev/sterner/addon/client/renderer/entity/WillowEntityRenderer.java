@@ -54,7 +54,7 @@ public class WillowEntityRenderer extends GeoEntityRenderer<WillowEntity> {
 						.setRandomMotion(0.02f)
 						.setRandomOffset(0.1f, 0.1f)
 						.enableNoClip()
-						.repeat(animatable.getCommandSenderWorld(), ear.getWorldPosition().x(), ear.getWorldPosition().y() + 1, ear.getWorldPosition().z(), 10);
+						.repeat(animatable.getCommandSenderWorld(), ear.getWorldPosition().x(), ear.getWorldPosition().y() + 0.85, ear.getWorldPosition().z(), 10);
 			});
 		}
 		super.postRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);

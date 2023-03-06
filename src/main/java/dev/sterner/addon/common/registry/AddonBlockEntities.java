@@ -2,6 +2,7 @@ package dev.sterner.addon.common.registry;
 
 import dev.sterner.addon.common.blockentity.BeamBlockEntity;
 import dev.sterner.addon.common.blockentity.CrystalBlockEntity;
+import dev.sterner.addon.common.blockentity.CrystalGroundBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
@@ -19,6 +20,7 @@ public interface AddonBlockEntities {
 
 	BlockEntityType<BeamBlockEntity> BEAM = register("beam", QuiltBlockEntityTypeBuilder.create(BeamBlockEntity::new, AddonObjects.BEAM_BLOCK).build(null));
 	BlockEntityType<CrystalBlockEntity> CRYSTAL = register("crystal", QuiltBlockEntityTypeBuilder.create((blockPos, blockState) ->  new CrystalBlockEntity(blockPos, blockState, null), AddonObjects.SPIRIT_CRYSTAL).build(null));
+	BlockEntityType<CrystalGroundBlockEntity> CRYSTAL_GROUND = register("crystal_ground", QuiltBlockEntityTypeBuilder.create((blockPos, blockState) ->  new CrystalGroundBlockEntity(blockPos, blockState, null), AddonObjects.SPIRIT_CRYSTAL_GROUND).build(null));
 
 
 	static <T extends BlockEntity> BlockEntityType<T> register(String id, BlockEntityType<T> type) {

@@ -3,6 +3,7 @@ package dev.sterner.addon.common.registry;
 import dev.sterner.addon.Addon;
 import dev.sterner.addon.common.block.BeamBlock;
 import dev.sterner.addon.common.block.CrystalBlock;
+import dev.sterner.addon.common.block.CrystalGroundBlock;
 import dev.sterner.addon.common.item.CrystalBlockItem;
 import dev.sterner.addon.common.item.HallowedGogglesItem;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
@@ -29,7 +30,8 @@ public interface AddonObjects {
 
 	Block BEAM_BLOCK = register("beam_block", new BeamBlock(QuiltBlockSettings.copyOf(Blocks.STONE)), true);
 
-	Block SPIRIT_CRYSTAL = registerCrystal("spirit_crystal", new CrystalBlock(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)));
+	Block SPIRIT_CRYSTAL = registerCrystal("spirit_crystal", new CrystalBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)));
+	Block SPIRIT_CRYSTAL_GROUND = register("spirit_crystal_ground", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 
 
 	static CrystalBlock registerCrystal(String name, CrystalBlock block) {
