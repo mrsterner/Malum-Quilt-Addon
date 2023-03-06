@@ -44,7 +44,7 @@ public interface AddonEntityTypes {
 	EntityType<VoidHandEntity> VOID = register("void", QuiltEntityTypeBuilder
 			.<VoidHandEntity>createLiving()
 			.entityFactory(VoidHandEntity::new)
-			.setDimensions(EntityDimensions.fixed(0.5F, 4F))
+			.setDimensions(EntityDimensions.fixed(0.75F, 8F))
 			.defaultAttributes(VoidHandEntity.createAttributes())
 			.build());
 

@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -23,7 +24,8 @@ public interface AddonObjects {
 	Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
 	Item HALLOWED_GOGGLES = register("hallowed_goggles", new HallowedGogglesItem(settings()));
-	MalumSpiritItem DAMNED_SPIRIT = register("damned_spirit", new MalumSpiritItem(settings(), AddonSpiritTypes.DAMNED_SPIRIT));
+	Item DAMNED_SPIRIT = register("damned_spirit", new MalumSpiritItem(settings(), AddonSpiritTypes.DAMNED_SPIRIT));
+	Item VOID_SPAWNEGG = register("void_spawnegg", new SpawnEggItem(AddonEntityTypes.VOID, 0xffffff, 0xffffff, settings()));
 
 	Block BEAM_BLOCK = register("beam_block", new BeamBlock(QuiltBlockSettings.copyOf(Blocks.STONE)), true);
 

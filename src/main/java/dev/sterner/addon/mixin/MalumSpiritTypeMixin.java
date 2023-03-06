@@ -23,6 +23,6 @@ public class MalumSpiritTypeMixin {
 
 	@Inject(method = "<init>(Ljava/lang/String;Ljava/awt/Color;Ljava/awt/Color;)V", at = @At(value = "INVOKE", target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;", ordinal = 1))
 	private void addon$injectType(String identifier, Color color, Color endColor, CallbackInfo ci){
-		SPIRITS.put(() -> AddonObjects.DAMNED_SPIRIT, "damned");
+		SPIRITS.put(() -> (MalumSpiritItem) AddonObjects.DAMNED_SPIRIT, "damned");
 	}
 }
