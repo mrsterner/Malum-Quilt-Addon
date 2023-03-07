@@ -6,6 +6,7 @@ import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
 import com.sammy.lodestone.systems.particle.data.ColorParticleData;
 import com.sammy.lodestone.systems.particle.data.GenericParticleData;
 import com.sammy.lodestone.systems.particle.data.SpinParticleData;
+import dev.sterner.addon.common.block.CrystalGroundBlock;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
 import dev.sterner.addon.common.registry.AddonSpiritTypes;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
@@ -77,6 +78,7 @@ public class CrystalGroundBlockEntity extends LodestoneBlockEntity {
 		super.clientTick();
 		if(power >= MAX_POWER / 2){
 			Color color = type.getColor();
+			int offset = this.getCachedState().get(CrystalGroundBlock.AGE);
 			WorldParticleBuilder.create(LodestoneParticleRegistry.TWINKLE_PARTICLE)
 					.setTransparencyData(GenericParticleData.create(0.15f, 0f).build())
 					.setScaleData(GenericParticleData.create(0.3f, 0).build())
@@ -86,7 +88,7 @@ public class CrystalGroundBlockEntity extends LodestoneBlockEntity {
 					.setRandomMotion(0.02f)
 					.setRandomOffset(0.1f, 0.1f)
 					.enableNoClip()
-					.repeat(world, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, 4 * (1 + (int)(power / MAX_POWER)));
+					.repeat(world, pos.getX() + 0.5f, pos.getY() + 0.15f * offset, pos.getZ() + 0.5f, 5 * (1 + (power / MAX_POWER)));
 		}
 
 

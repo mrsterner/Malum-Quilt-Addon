@@ -31,10 +31,12 @@ public interface AddonObjects {
 	Block BEAM_BLOCK = register("beam_block", new BeamBlock(QuiltBlockSettings.copyOf(Blocks.STONE)), true);
 
 	Block SPIRIT_CRYSTAL = registerCrystal("spirit_crystal", new CrystalBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)));
-	Block SPIRIT_CRYSTAL_GROUND = register("spirit_crystal_ground", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 
+	Block DAMNED_CRYSTAL = register("damned_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+	Block WICKED_CRYSTAL = register("wicked_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+	Block EARTHEN_CRYSTAL = register("earthen_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 
-	static CrystalBlock registerCrystal(String name, CrystalBlock block) {
+	static CrystalBlock<?> registerCrystal(String name, CrystalBlock<?> block) {
 		BLOCKS.put(block, Addon.id(name));
 		ITEMS.put(new CrystalBlockItem(block, settings(), block.type), BLOCKS.get(block));
 		return block;

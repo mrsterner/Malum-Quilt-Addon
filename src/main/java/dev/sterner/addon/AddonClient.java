@@ -13,15 +13,19 @@ import dev.sterner.addon.client.renderer.entity.EffigyEntityRenderer;
 import dev.sterner.addon.client.renderer.entity.VoidEntityRenderer;
 import dev.sterner.addon.client.renderer.entity.WillowEntityRenderer;
 import dev.sterner.addon.client.renderer.equipment.armor.HallowedGogglesRenderer;
+import dev.sterner.addon.common.blockentity.CrystalGroundBlockEntity;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
 import dev.sterner.addon.common.registry.AddonEntityTypes;
 import dev.sterner.addon.common.registry.AddonObjects;
 import dev.sterner.addon.common.registry.AddonSpiritTypes;
 import dev.sterner.addon.common.util.RenderUtils;
+import dev.sterner.malum.common.blockentity.EtherBlockEntity;
 import dev.sterner.malum.common.blockentity.spirit_altar.SpiritAltarBlockEntity;
 import dev.sterner.malum.common.recipe.SpiritInfusionRecipe;
 import dev.sterner.malum.common.recipe.SpiritWithCount;
+import dev.sterner.malum.common.registry.MalumSpiritTypeRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
@@ -35,6 +39,7 @@ import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 
+import java.awt.*;
 import java.util.List;
 
 
@@ -45,7 +50,7 @@ public class AddonClient implements ClientModInitializer {
 		//BLOCKS
 		BlockEntityRendererFactories.register(AddonBlockEntities.BEAM, BeamBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(AddonBlockEntities.CRYSTAL, CrystalBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(AddonBlockEntities.CRYSTAL_GROUND, CrystalGroundBlockEntityRenderer::new);
+		//BlockEntityRendererFactories.register(AddonBlockEntities.CRYSTAL_GROUND, CrystalGroundBlockEntityRenderer::new);
 		BlockRenderLayerMap.put(RenderLayer.getCutout(), AddonObjects.SPIRIT_CRYSTAL);
 
 		//ENTITY
@@ -63,8 +68,18 @@ public class AddonClient implements ClientModInitializer {
 		ArmorRenderer.register(new HallowedGogglesRenderer(), AddonObjects.HALLOWED_GOGGLES);
 
 		//COLOR
-		ColorProviderRegistry.ITEM.register((itemStack, index) -> 0xffffff, AddonObjects.SPIRIT_CRYSTAL);
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> 0xffffff, AddonObjects.SPIRIT_CRYSTAL);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> AddonSpiritTypes.DAMNED_SPIRIT.getColor().getRGB(), AddonObjects.DAMNED_SPIRIT);
+
+
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> AddonSpiritTypes.DAMNED_SPIRIT.getColor().getRGB(), AddonObjects.DAMNED_CRYSTAL);
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MalumSpiritTypeRegistry.WICKED_SPIRIT.getColor().getRGB(), AddonObjects.WICKED_CRYSTAL);
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MalumSpiritTypeRegistry.EARTHEN_SPIRIT.getColor().getRGB(), AddonObjects.EARTHEN_CRYSTAL);
+
+		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> AddonSpiritTypes.DAMNED_SPIRIT.getColor().getRGB(), AddonObjects.DAMNED_CRYSTAL);
+		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> MalumSpiritTypeRegistry.WICKED_SPIRIT.getColor().getRGB(), AddonObjects.WICKED_CRYSTAL);
+		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> MalumSpiritTypeRegistry.EARTHEN_SPIRIT.getColor().getRGB(), AddonObjects.EARTHEN_CRYSTAL);
+
 
 		//EVENT
 		HudRenderCallback.EVENT.register(this::spiritAltarRecipeHud);

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0,waterlogged=false": {
+      "model": "addon:block/crystal_template_0"
+    },
+    "age=0,waterlogged=true": {
+      "model": "addon:block/crystal_template_0"
+    },
+    "age=1,waterlogged=false": {
+      "model": "addon:block/crystal_template_1"
+    },
+    "age=1,waterlogged=true": {
+      "model": "addon:block/crystal_template_1"
+    },
+    "age=2,waterlogged=false": {
+      "model": "addon:block/crystal_template_2"
+    },
+    "age=2,waterlogged=true": {
+      "model": "addon:block/crystal_template_2"
+    },
+    "age=3,waterlogged=false": {
+      "model": "addon:block/crystal_template_3"
+    },
+    "age=3,waterlogged=true": {
+      "model": "addon:block/crystal_template_3"
+    }
+  }
+}

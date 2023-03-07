@@ -32,6 +32,7 @@ public class Addon implements ModInitializer {
 			entries.addItem(AddonObjects.HALLOWED_GOGGLES);
 			entries.addItem(AddonObjects.DAMNED_SPIRIT);
 			entries.addItem(AddonObjects.SPIRIT_CRYSTAL);
+			entries.addItem(AddonObjects.DAMNED_CRYSTAL);
 		});
 	}
 
