@@ -20,7 +20,17 @@ public interface AddonBlockEntities {
 
 	BlockEntityType<BeamBlockEntity> BEAM = register("beam", QuiltBlockEntityTypeBuilder.create(BeamBlockEntity::new, AddonObjects.BEAM_BLOCK).build(null));
 	BlockEntityType<CrystalBlockEntity> CRYSTAL = register("crystal", QuiltBlockEntityTypeBuilder.create((blockPos, blockState) ->  new CrystalBlockEntity(blockPos, blockState, null), AddonObjects.SPIRIT_CRYSTAL).build(null));
-	BlockEntityType<CrystalGroundBlockEntity> CRYSTAL_GROUND = register("crystal_ground", QuiltBlockEntityTypeBuilder.create((blockPos, blockState) ->  new CrystalGroundBlockEntity(blockPos, blockState, null), AddonObjects.DAMNED_CRYSTAL).build(null));
+	BlockEntityType<CrystalGroundBlockEntity> CRYSTAL_GROUND = register("crystal_ground", QuiltBlockEntityTypeBuilder.create((blockPos, blockState) ->  new CrystalGroundBlockEntity(blockPos, blockState, null),
+			AddonObjects.AERIAL_CRYSTAL,
+			AddonObjects.AQUEOUS_CRYSTAL,
+			AddonObjects.ARCANE_CRYSTAL,
+			AddonObjects.DAMNED_CRYSTAL,
+			AddonObjects.EARTHEN_CRYSTAL,
+			AddonObjects.INFERNAL_CRYSTAL,
+			AddonObjects.SACRED_CRYSTAL,
+			AddonObjects.WICKED_CRYSTAL,
+			AddonObjects.EARTHEN_CRYSTAL
+	).build(null));
 
 
 	static <T extends BlockEntity> BlockEntityType<T> register(String id, BlockEntityType<T> type) {

@@ -50,7 +50,6 @@ public class AddonClient implements ClientModInitializer {
 		//BLOCKS
 		BlockEntityRendererFactories.register(AddonBlockEntities.BEAM, BeamBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(AddonBlockEntities.CRYSTAL, CrystalBlockEntityRenderer::new);
-		//BlockEntityRendererFactories.register(AddonBlockEntities.CRYSTAL_GROUND, CrystalGroundBlockEntityRenderer::new);
 		BlockRenderLayerMap.put(RenderLayer.getCutout(), AddonObjects.SPIRIT_CRYSTAL);
 
 		//ENTITY
@@ -70,16 +69,6 @@ public class AddonClient implements ClientModInitializer {
 		//COLOR
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> 0xffffff, AddonObjects.SPIRIT_CRYSTAL);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> AddonSpiritTypes.DAMNED_SPIRIT.getColor().getRGB(), AddonObjects.DAMNED_SPIRIT);
-
-
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> AddonSpiritTypes.DAMNED_SPIRIT.getColor().getRGB(), AddonObjects.DAMNED_CRYSTAL);
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MalumSpiritTypeRegistry.WICKED_SPIRIT.getColor().getRGB(), AddonObjects.WICKED_CRYSTAL);
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MalumSpiritTypeRegistry.EARTHEN_SPIRIT.getColor().getRGB(), AddonObjects.EARTHEN_CRYSTAL);
-
-		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> AddonSpiritTypes.DAMNED_SPIRIT.getColor().getRGB(), AddonObjects.DAMNED_CRYSTAL);
-		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> MalumSpiritTypeRegistry.WICKED_SPIRIT.getColor().getRGB(), AddonObjects.WICKED_CRYSTAL);
-		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> MalumSpiritTypeRegistry.EARTHEN_SPIRIT.getColor().getRGB(), AddonObjects.EARTHEN_CRYSTAL);
-
 
 		//EVENT
 		HudRenderCallback.EVENT.register(this::spiritAltarRecipeHud);

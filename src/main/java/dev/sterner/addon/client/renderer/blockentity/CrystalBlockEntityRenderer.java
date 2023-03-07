@@ -31,7 +31,7 @@ public class CrystalBlockEntityRenderer implements BlockEntityRenderer<CrystalBl
 
 		matrices.push();
 		matrices.translate(0.5,-0.5,0.5);
-		model.main.render(matrices, vertexConsumers.getBuffer(AddonRenderLayers.getGlowy(Addon.id("textures/block/crystal.png"))), light, overlay, 1 - r ,1 - g,1 - b,1);
+		model.main.render(matrices, vertexConsumers.getBuffer(AddonRenderLayers.getGlowy(Addon.id("textures/block/crystal_damned.png"))), light, overlay, 1 - r ,1 - g,1 - b,1);
 		matrices.pop();
 	}
 }

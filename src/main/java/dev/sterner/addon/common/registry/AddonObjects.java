@@ -34,7 +34,14 @@ public interface AddonObjects {
 
 	Block DAMNED_CRYSTAL = register("damned_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 	Block WICKED_CRYSTAL = register("wicked_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+	Block AERIAL_CRYSTAL = register("aerial_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+	Block AQUEOUS_CRYSTAL = register("aqueous_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 	Block EARTHEN_CRYSTAL = register("earthen_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+	Block SACRED_CRYSTAL = register("sacred_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+	Block ELDRICH_CRYSTAL = register("eldrich_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+	Block INFERNAL_CRYSTAL = register("infernal_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+	Block ARCANE_CRYSTAL = register("arcane_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+
 
 	static CrystalBlock<?> registerCrystal(String name, CrystalBlock<?> block) {
 		BLOCKS.put(block, Addon.id(name));

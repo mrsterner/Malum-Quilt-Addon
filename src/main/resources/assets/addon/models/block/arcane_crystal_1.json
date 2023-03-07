@@ -1,0 +1,6 @@
+{
+  "parent": "addon:block/crystal_template_1",
+  "textures": {
+    "6": "addon:block/crystal_arcane"
+  }
+}

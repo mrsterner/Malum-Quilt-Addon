@@ -1,12 +1,6 @@
 package dev.sterner.addon.common.blockentity;
 
-import com.sammy.lodestone.setup.LodestoneParticleRegistry;
 import com.sammy.lodestone.systems.blockentity.LodestoneBlockEntity;
-import com.sammy.lodestone.systems.particle.WorldParticleBuilder;
-import com.sammy.lodestone.systems.particle.data.ColorParticleData;
-import com.sammy.lodestone.systems.particle.data.GenericParticleData;
-import com.sammy.lodestone.systems.particle.data.SpinParticleData;
-import dev.sterner.addon.common.block.CrystalGroundBlock;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
 import dev.sterner.addon.common.registry.AddonSpiritTypes;
 import dev.sterner.malum.common.spirit.MalumSpiritType;
@@ -14,8 +8,6 @@ import dev.sterner.malum.common.spirit.SpiritHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
-
-import java.awt.*;
 
 public class CrystalGroundBlockEntity extends LodestoneBlockEntity {
 	public int MAX_POWER = 256;
@@ -49,13 +41,13 @@ public class CrystalGroundBlockEntity extends LodestoneBlockEntity {
 
 	@Override
 	public void readNbt(NbtCompound nbt) {
-		if (nbt.contains("spirit")) {
-			type = SpiritHelper.getSpiritType(nbt.getString("spirit"));
+		if (nbt.contains("Spirit")) {
+			type = SpiritHelper.getSpiritType(nbt.getString("Spirit"));
 		} else {
 			type = null;
 		}
-		if(nbt.contains("power")) {
-			power = nbt.getInt("power");
+		if(nbt.contains("Power")) {
+			power = nbt.getInt("Power");
 		} else {
 			power = 0;
 		}
@@ -65,10 +57,10 @@ public class CrystalGroundBlockEntity extends LodestoneBlockEntity {
 	@Override
 	protected void writeNbt(NbtCompound nbt) {
 		if (type != null) {
-			nbt.putString("spirit", type.identifier);
+			nbt.putString("Spirit", type.identifier);
 		}
 		if(power != 0){
-			nbt.putInt("power", power);
+			nbt.putInt("Power", power);
 		}
 		super.writeNbt(nbt);
 	}
@@ -76,6 +68,7 @@ public class CrystalGroundBlockEntity extends LodestoneBlockEntity {
 	@Override
 	public void clientTick() {
 		super.clientTick();
+		/*
 		if(power >= MAX_POWER / 2){
 			Color color = type.getColor();
 			int offset = this.getCachedState().get(CrystalGroundBlock.AGE);
@@ -90,7 +83,6 @@ public class CrystalGroundBlockEntity extends LodestoneBlockEntity {
 					.enableNoClip()
 					.repeat(world, pos.getX() + 0.5f, pos.getY() + 0.15f * offset, pos.getZ() + 0.5f, 5 * (1 + (power / MAX_POWER)));
 		}
-
-
+		 */
 	}
 }

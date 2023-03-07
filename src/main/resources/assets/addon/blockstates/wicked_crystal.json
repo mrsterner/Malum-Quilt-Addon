@@ -1,28 +1,222 @@
 {
   "variants": {
-    "age=0,waterlogged=false": {
-      "model": "addon:block/crystal_template_0"
+    "age=0,waterlogged=false,facing=up": {
+      "model": "addon:block/wicked_crystal_0"
     },
-    "age=0,waterlogged=true": {
-      "model": "addon:block/crystal_template_0"
+    "age=0,waterlogged=true,facing=up": {
+      "model": "addon:block/wicked_crystal_0"
     },
-    "age=1,waterlogged=false": {
-      "model": "addon:block/crystal_template_1"
+    "age=1,waterlogged=false,facing=up": {
+      "model": "addon:block/wicked_crystal_1"
     },
-    "age=1,waterlogged=true": {
-      "model": "addon:block/crystal_template_1"
+    "age=1,waterlogged=true,facing=up": {
+      "model": "addon:block/wicked_crystal_1"
     },
-    "age=2,waterlogged=false": {
-      "model": "addon:block/crystal_template_2"
+    "age=2,waterlogged=false,facing=up": {
+      "model": "addon:block/wicked_crystal_2"
     },
-    "age=2,waterlogged=true": {
-      "model": "addon:block/crystal_template_2"
+    "age=2,waterlogged=true,facing=up": {
+      "model": "addon:block/wicked_crystal_2"
     },
-    "age=3,waterlogged=false": {
-      "model": "addon:block/crystal_template_3"
+    "age=3,waterlogged=false,facing=up": {
+      "model": "addon:block/wicked_crystal_3"
     },
-    "age=3,waterlogged=true": {
-      "model": "addon:block/crystal_template_3"
+    "age=3,waterlogged=true,facing=up": {
+      "model": "addon:block/wicked_crystal_3"
+    },
+
+
+    "age=0,waterlogged=false,facing=down": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 180
+    },
+    "age=0,waterlogged=true,facing=down": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 180
+    },
+    "age=1,waterlogged=false,facing=down": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 180
+    },
+    "age=1,waterlogged=true,facing=down": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 180
+    },
+    "age=2,waterlogged=false,facing=down": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 180
+    },
+    "age=2,waterlogged=true,facing=down": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 180
+    },
+    "age=3,waterlogged=false,facing=down": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 180
+    },
+    "age=3,waterlogged=true,facing=down": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 180
+    },
+
+
+    "age=0,waterlogged=false,facing=east": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 90,
+      "y": 90
+    },
+    "age=0,waterlogged=true,facing=east": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 90,
+      "y": 90
+    },
+    "age=1,waterlogged=false,facing=east": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 90,
+      "y": 90
+    },
+    "age=1,waterlogged=true,facing=east": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 90,
+      "y": 90
+    },
+    "age=2,waterlogged=false,facing=east": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 90,
+      "y": 90
+    },
+    "age=2,waterlogged=true,facing=east": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 90,
+      "y": 90
+    },
+    "age=3,waterlogged=false,facing=east": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 90,
+      "y": 90
+    },
+    "age=3,waterlogged=true,facing=east": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 90,
+      "y": 90
+    },
+
+
+    "age=0,waterlogged=false,facing=north": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 90
+    },
+    "age=0,waterlogged=true,facing=north": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 90
+    },
+    "age=1,waterlogged=false,facing=north": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 90
+    },
+    "age=1,waterlogged=true,facing=north": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 90
+    },
+    "age=2,waterlogged=false,facing=north": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 90
+    },
+    "age=2,waterlogged=true,facing=north": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 90
+    },
+    "age=3,waterlogged=false,facing=north": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 90
+    },
+    "age=3,waterlogged=true,facing=north": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 90
+    },
+
+
+    "age=0,waterlogged=false,facing=south": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 90,
+      "y": 180
+    },
+    "age=0,waterlogged=true,facing=south": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 90,
+      "y": 180
+    },
+    "age=1,waterlogged=false,facing=south": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 90,
+      "y": 180
+    },
+    "age=1,waterlogged=true,facing=south": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 90,
+      "y": 180
+    },
+    "age=2,waterlogged=false,facing=south": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 90,
+      "y": 180
+    },
+    "age=2,waterlogged=true,facing=south": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 90,
+      "y": 180
+    },
+    "age=3,waterlogged=false,facing=south": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 90,
+      "y": 180
+    },
+    "age=3,waterlogged=true,facing=south": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 90,
+      "y": 180
+    },
+
+
+    "age=0,waterlogged=false,facing=west": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 90,
+      "y": 270
+    },
+    "age=0,waterlogged=true,facing=west": {
+      "model": "addon:block/wicked_crystal_0",
+      "x": 90,
+      "y": 270
+    },
+    "age=1,waterlogged=false,facing=west": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 90,
+      "y": 270
+    },
+    "age=1,waterlogged=true,facing=west": {
+      "model": "addon:block/wicked_crystal_1",
+      "x": 90,
+      "y": 270
+    },
+    "age=2,waterlogged=false,facing=west": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 90,
+      "y": 270
+    },
+    "age=2,waterlogged=true,facing=west": {
+      "model": "addon:block/wicked_crystal_2",
+      "x": 90,
+      "y": 270
+    },
+    "age=3,waterlogged=false,facing=west": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 90,
+      "y": 270
+    },
+    "age=3,waterlogged=true,facing=west": {
+      "model": "addon:block/wicked_crystal_3",
+      "x": 90,
+      "y": 270
     }
   }
 }
