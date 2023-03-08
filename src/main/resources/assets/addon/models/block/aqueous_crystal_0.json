@@ -1,6 +1,7 @@
 {
   "parent": "addon:block/crystal_template_0",
   "textures": {
-    "6": "addon:block/crystal_aqueous"
+    "6": "addon:block/crystal_aqueous",
+    "particle": "malum:item/aqueous_spirit"
   }
 }

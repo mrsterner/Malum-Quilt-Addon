@@ -22,7 +22,8 @@ public class AddonUtils {
 	}
 
 	public static VoxelShape rotateShape(int times, VoxelShape shape, char axis) {
-		VoxelShape[] buffer = new VoxelShape[]{ shape, VoxelShapes.empty() };
+		VoxelShape[] buffer = new VoxelShape[]{shape, VoxelShapes.empty()};
+		VoxelShape emptyShape = VoxelShapes.empty();
 		for (int i = 0; i < times; i++) {
 			buffer[0].forEachBox((minX, minY, minZ, maxX, maxY, maxZ) -> {
 				switch (axis) {
@@ -36,8 +37,10 @@ public class AddonUtils {
 				}
 			});
 			buffer[0] = buffer[1];
-			buffer[1] = VoxelShapes.empty();
+			buffer[1] = emptyShape;
 		}
 		return buffer[0];
 	}
+
+
 }

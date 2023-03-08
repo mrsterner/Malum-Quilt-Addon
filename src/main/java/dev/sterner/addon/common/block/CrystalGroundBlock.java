@@ -27,6 +27,10 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+
 public class CrystalGroundBlock<T extends CrystalGroundBlockEntity> extends WaterLoggedEntityBlock<T> {
 	public MalumSpiritType type = AddonSpiritTypes.DAMNED_SPIRIT;
 	public static final IntProperty AGE = Properties.AGE_3;
@@ -41,12 +45,34 @@ public class CrystalGroundBlock<T extends CrystalGroundBlockEntity> extends Wate
 	}
 
 	public static final VoxelShape[] SHAPES = new VoxelShape[]{SHAPE_0, SHAPE_1, SHAPE_2, SHAPE_3};
-
+	public static final VoxelShape[][] CACHE = new VoxelShape[DIRECTIONS.length][AGE.getValues().size()];
 
 
 	public CrystalGroundBlock(Settings settings) {
 		super(settings.nonOpaque());
 		this.setDefaultState(getDefaultState().with(AGE, 0).with(FACING, Direction.UP));
+
+	}
+
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		Direction dir = state.get(FACING);
+		int age = state.get(AGE);
+		if(CACHE[dir.getId()][age].isEmpty()){
+			CACHE[dir.getId()][age] = getShape(state);
+		}
+		return CACHE[dir.getId()][age];
+	}
+
+	private VoxelShape getShape(BlockState state){
+		return switch (state.get(FACING)) {
+			case UP -> SHAPES[state.get(AGE)];
+			case DOWN -> AddonUtils.rotateShape(2, SHAPES[state.get(AGE)], 'x');
+			case NORTH -> AddonUtils.rotateShape(3, SHAPES[state.get(AGE)], 'x');
+			case SOUTH -> AddonUtils.rotateShape(1, AddonUtils.rotateShape(2, SHAPES[state.get(AGE)], 'y'), 'x');
+			case WEST -> AddonUtils.rotateShape(3, AddonUtils.rotateShape(2, AddonUtils.rotateShape(1, SHAPES[state.get(AGE)], 'z'), 'y'), 'x');
+			case EAST -> AddonUtils.rotateShape(1, AddonUtils.rotateShape(1, SHAPES[state.get(AGE)], 'z'), 'x');
+		};
 	}
 
 	@Nullable
@@ -68,17 +94,7 @@ public class CrystalGroundBlock<T extends CrystalGroundBlockEntity> extends Wate
 		return new CrystalGroundBlockEntity(pos, state, type);
 	}
 
-	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return switch (state.get(FACING)){
-			case UP -> SHAPES[state.get(AGE)];
-			case DOWN -> AddonUtils.rotateShape(2, SHAPES[state.get(AGE)], 'x');
-			case NORTH -> AddonUtils.rotateShape(3, SHAPES[state.get(AGE)], 'x');
-			case SOUTH -> AddonUtils.rotateShape(1, AddonUtils.rotateShape(2, SHAPES[state.get(AGE)], 'y'), 'x');
-			case WEST -> AddonUtils.rotateShape(3, AddonUtils.rotateShape(2, AddonUtils.rotateShape(1, SHAPES[state.get(AGE)], 'z'), 'y'), 'x');
-			case EAST -> AddonUtils.rotateShape(1, AddonUtils.rotateShape(1, SHAPES[state.get(AGE)], 'z'), 'x');
-		};
-	}
+
 
 	@Override
 	public @Nullable <B extends BlockEntity> BlockEntityTicker<B> getTicker(@NotNull World world, @NotNull BlockState state, @NotNull BlockEntityType<B> type) {

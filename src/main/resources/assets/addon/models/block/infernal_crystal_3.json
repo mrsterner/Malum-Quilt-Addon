@@ -1,6 +1,7 @@
 {
   "parent": "addon:block/crystal_template_3",
   "textures": {
-    "6": "addon:block/crystal_infernal"
+    "6": "addon:block/crystal_infernal",
+    "particle": "malum:item/infernal_spirit"
   }
 }

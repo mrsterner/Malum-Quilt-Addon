@@ -1,6 +1,7 @@
 {
   "parent": "addon:block/crystal_template_0",
   "textures": {
-    "6": "addon:block/crystal_sacred"
+    "6": "addon:block/crystal_sacred",
+    "particle": "malum:item/sacred_spirit"
   }
 }

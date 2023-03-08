@@ -1,10 +1,8 @@
 package dev.sterner.addon.client.renderer.blockentity;
 
 import dev.sterner.addon.Addon;
-import dev.sterner.addon.client.models.blockentity.CrystalBlockEntityModel;
 import dev.sterner.addon.client.models.blockentity.CrystalGroundBlockEntityModel;
 import dev.sterner.addon.client.registry.AddonRenderLayers;
-import dev.sterner.addon.common.blockentity.CrystalBlockEntity;
 import dev.sterner.addon.common.blockentity.CrystalGroundBlockEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;

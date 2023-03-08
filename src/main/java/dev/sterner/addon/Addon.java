@@ -31,13 +31,12 @@ public class Addon implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(MALUM_ADDON).register(entries -> {
 			entries.addItem(AddonObjects.HALLOWED_GOGGLES);
 			entries.addItem(AddonObjects.DAMNED_SPIRIT);
-			entries.addItem(AddonObjects.SPIRIT_CRYSTAL);
 			entries.addItem(AddonObjects.AERIAL_CRYSTAL);
 			entries.addItem(AddonObjects.AQUEOUS_CRYSTAL);
 			entries.addItem(AddonObjects.ARCANE_CRYSTAL);
 			entries.addItem(AddonObjects.DAMNED_CRYSTAL);
 			entries.addItem(AddonObjects.EARTHEN_CRYSTAL);
-			entries.addItem(AddonObjects.ELDRICH_CRYSTAL);
+			entries.addItem(AddonObjects.ELDRITCH_CRYSTAL);
 			entries.addItem(AddonObjects.INFERNAL_CRYSTAL);
 			entries.addItem(AddonObjects.SACRED_CRYSTAL);
 			entries.addItem(AddonObjects.WICKED_CRYSTAL);

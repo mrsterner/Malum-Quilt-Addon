@@ -2,9 +2,7 @@ package dev.sterner.addon.common.registry;
 
 import dev.sterner.addon.Addon;
 import dev.sterner.addon.common.block.BeamBlock;
-import dev.sterner.addon.common.block.CrystalBlock;
 import dev.sterner.addon.common.block.CrystalGroundBlock;
-import dev.sterner.addon.common.item.CrystalBlockItem;
 import dev.sterner.addon.common.item.HallowedGogglesItem;
 import dev.sterner.malum.common.item.spirit.MalumSpiritItem;
 import net.minecraft.block.Block;
@@ -30,24 +28,16 @@ public interface AddonObjects {
 
 	Block BEAM_BLOCK = register("beam_block", new BeamBlock(QuiltBlockSettings.copyOf(Blocks.STONE)), true);
 
-	Block SPIRIT_CRYSTAL = registerCrystal("spirit_crystal", new CrystalBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)));
-
 	Block DAMNED_CRYSTAL = register("damned_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 	Block WICKED_CRYSTAL = register("wicked_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 	Block AERIAL_CRYSTAL = register("aerial_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 	Block AQUEOUS_CRYSTAL = register("aqueous_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 	Block EARTHEN_CRYSTAL = register("earthen_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 	Block SACRED_CRYSTAL = register("sacred_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
-	Block ELDRICH_CRYSTAL = register("eldrich_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
+	Block ELDRITCH_CRYSTAL = register("eldritch_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 	Block INFERNAL_CRYSTAL = register("infernal_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 	Block ARCANE_CRYSTAL = register("arcane_crystal", new CrystalGroundBlock<>(QuiltBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), true);
 
-
-	static CrystalBlock<?> registerCrystal(String name, CrystalBlock<?> block) {
-		BLOCKS.put(block, Addon.id(name));
-		ITEMS.put(new CrystalBlockItem(block, settings(), block.type), BLOCKS.get(block));
-		return block;
-	}
 
 	static <T extends Block> T register(String name, T block, boolean createItem) {
 		BLOCKS.put(block, Addon.id(name));

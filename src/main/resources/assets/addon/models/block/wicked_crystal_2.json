@@ -1,6 +1,7 @@
 {
   "parent": "addon:block/crystal_template_2",
   "textures": {
-    "6": "addon:block/crystal_wicked"
+    "6": "addon:block/crystal_wicked",
+    "particle": "malum:item/wicked_spirit"
   }
 }

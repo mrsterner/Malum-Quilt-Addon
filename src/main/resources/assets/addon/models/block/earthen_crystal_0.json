@@ -1,6 +1,7 @@
 {
   "parent": "addon:block/crystal_template_0",
   "textures": {
-    "6": "addon:block/crystal_earthen"
+    "6": "addon:block/crystal_earthen",
+    "particle": "malum:item/earthen_spirit"
   }
 }
