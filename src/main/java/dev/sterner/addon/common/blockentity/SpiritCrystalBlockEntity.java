@@ -9,13 +9,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
-public class CrystalGroundBlockEntity extends LodestoneBlockEntity {
+public class SpiritCrystalBlockEntity extends LodestoneBlockEntity {
 	public int MAX_POWER = 256;
 	public int power = 0;
 	public MalumSpiritType type;
 	public boolean loop = true;
 
-	public CrystalGroundBlockEntity(BlockPos pos, BlockState state, MalumSpiritType type) {
+	public SpiritCrystalBlockEntity(BlockPos pos, BlockState state, MalumSpiritType type) {
 		super(AddonBlockEntities.CRYSTAL_GROUND, pos, state);
 		this.type = type;
 	}

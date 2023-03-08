@@ -12,9 +12,9 @@ public final class AddonEarlyRiser implements Runnable {
 	public void run() {
 		MixinExtrasBootstrap.init();
 
-		final MappingResolver mappings = QuiltLoader.getMappingResolver();
-		final String armorMaterialsTarget = mappings.mapClassName("intermediary", "net.minecraft.class_1740");
-		final String armorParam5 = "L" + mappings.mapClassName("intermediary", "net.minecraft.class_3414") + ";";
+		//final MappingResolver mappings = QuiltLoader.getMappingResolver();
+		//final String armorMaterialsTarget = mappings.mapClassName("intermediary", "net.minecraft.class_1740");
+		//final String armorParam5 = "L" + mappings.mapClassName("intermediary", "net.minecraft.class_3414") + ";";
 
 
 

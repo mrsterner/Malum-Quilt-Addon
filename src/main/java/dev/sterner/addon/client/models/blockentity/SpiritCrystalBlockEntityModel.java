@@ -3,10 +3,8 @@ package dev.sterner.addon.client.models.blockentity;
 import dev.sterner.addon.Addon;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
 
-public class CrystalGroundBlockEntityModel{
+public class SpiritCrystalBlockEntityModel {
 	public static final EntityModelLayer LAYER = new EntityModelLayer(Addon.id("crystal_ground"), "main");
 
 	public final ModelPart crystal_0;
@@ -16,7 +14,7 @@ public class CrystalGroundBlockEntityModel{
 	public final ModelPart crystal_4;
 	public final ModelPart base;
 
-	public CrystalGroundBlockEntityModel(ModelPart root) {
+	public SpiritCrystalBlockEntityModel(ModelPart root) {
 		this.crystal_0 = root.getChild("crystal_0");
 		this.crystal_1 = root.getChild("crystal_1");
 		this.crystal_2 = root.getChild("crystal_2");

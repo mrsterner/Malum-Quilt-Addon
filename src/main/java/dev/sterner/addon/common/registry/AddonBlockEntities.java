@@ -1,7 +1,7 @@
 package dev.sterner.addon.common.registry;
 
 import dev.sterner.addon.common.blockentity.BeamBlockEntity;
-import dev.sterner.addon.common.blockentity.CrystalGroundBlockEntity;
+import dev.sterner.addon.common.blockentity.SpiritCrystalBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
@@ -18,7 +18,7 @@ public interface AddonBlockEntities {
 	Map<Identifier, BlockEntityType<?>> BLOCK_ENTITY_TYPES  = new LinkedHashMap<>();
 
 	BlockEntityType<BeamBlockEntity> BEAM = register("beam", QuiltBlockEntityTypeBuilder.create(BeamBlockEntity::new, AddonObjects.BEAM_BLOCK).build(null));
-	BlockEntityType<CrystalGroundBlockEntity> CRYSTAL_GROUND = register("crystal_ground", QuiltBlockEntityTypeBuilder.create((blockPos, blockState) ->  new CrystalGroundBlockEntity(blockPos, blockState, null),
+	BlockEntityType<SpiritCrystalBlockEntity> CRYSTAL_GROUND = register("crystal_ground", QuiltBlockEntityTypeBuilder.create((blockPos, blockState) ->  new SpiritCrystalBlockEntity(blockPos, blockState, null),
 			AddonObjects.AERIAL_CRYSTAL,
 			AddonObjects.AQUEOUS_CRYSTAL,
 			AddonObjects.ARCANE_CRYSTAL,

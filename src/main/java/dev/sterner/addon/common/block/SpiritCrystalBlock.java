@@ -1,7 +1,7 @@
 package dev.sterner.addon.common.block;
 
 import com.sammy.lodestone.systems.block.WaterLoggedEntityBlock;
-import dev.sterner.addon.common.blockentity.CrystalGroundBlockEntity;
+import dev.sterner.addon.common.blockentity.SpiritCrystalBlockEntity;
 import dev.sterner.addon.common.registry.AddonBlockEntities;
 import dev.sterner.addon.common.registry.AddonSpiritTypes;
 import dev.sterner.addon.common.util.AddonUtils;
@@ -11,7 +11,9 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.client.render.BlockBreakingInfo;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
@@ -27,11 +29,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-
-public class CrystalGroundBlock<T extends CrystalGroundBlockEntity> extends WaterLoggedEntityBlock<T> {
+public class SpiritCrystalBlock<T extends SpiritCrystalBlockEntity> extends WaterLoggedEntityBlock<T> {
 	public MalumSpiritType type = AddonSpiritTypes.DAMNED_SPIRIT;
 	public static final IntProperty AGE = Properties.AGE_3;
 	public static final DirectionProperty FACING = Properties.FACING;
@@ -48,7 +46,7 @@ public class CrystalGroundBlock<T extends CrystalGroundBlockEntity> extends Wate
 	public static final VoxelShape[][] CACHE = new VoxelShape[DIRECTIONS.length][AGE.getValues().size()];
 
 
-	public CrystalGroundBlock(Settings settings) {
+	public SpiritCrystalBlock(Settings settings) {
 		super(settings.nonOpaque());
 		this.setDefaultState(getDefaultState().with(AGE, 0).with(FACING, Direction.UP));
 
@@ -58,7 +56,7 @@ public class CrystalGroundBlock<T extends CrystalGroundBlockEntity> extends Wate
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		Direction dir = state.get(FACING);
 		int age = state.get(AGE);
-		if(CACHE[dir.getId()][age].isEmpty()){
+		if(CACHE[dir.getId()][age] == null){
 			CACHE[dir.getId()][age] = getShape(state);
 		}
 		return CACHE[dir.getId()][age];
@@ -91,7 +89,7 @@ public class CrystalGroundBlock<T extends CrystalGroundBlockEntity> extends Wate
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		setBlockEntity((BlockEntityType<T>) AddonBlockEntities.CRYSTAL_GROUND);
-		return new CrystalGroundBlockEntity(pos, state, type);
+		return new SpiritCrystalBlockEntity(pos, state, type);
 	}
 
 
@@ -99,7 +97,7 @@ public class CrystalGroundBlock<T extends CrystalGroundBlockEntity> extends Wate
 	@Override
 	public @Nullable <B extends BlockEntity> BlockEntityTicker<B> getTicker(@NotNull World world, @NotNull BlockState state, @NotNull BlockEntityType<B> type) {
 		return  (tickerWorld, pos, tickerState, blockEntity) -> {
-			if(blockEntity instanceof CrystalGroundBlockEntity be){
+			if(blockEntity instanceof SpiritCrystalBlockEntity be){
 				be.tick();
 				if(world.isClient()){
 					be.clientTick();

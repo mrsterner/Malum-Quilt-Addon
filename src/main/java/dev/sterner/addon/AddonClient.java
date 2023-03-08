@@ -1,7 +1,7 @@
 package dev.sterner.addon;
 
 import com.sammy.lodestone.systems.recipe.IngredientWithCount;
-import dev.sterner.addon.client.models.blockentity.CrystalGroundBlockEntityModel;
+import dev.sterner.addon.client.models.blockentity.SpiritCrystalBlockEntityModel;
 import dev.sterner.addon.client.models.entity.EffigyEntityModel;
 import dev.sterner.addon.client.models.equipment.armor.HallowedGogglesModel;
 import dev.sterner.addon.client.renderer.BeamBlockEntityRenderer;
@@ -19,7 +19,6 @@ import dev.sterner.malum.common.recipe.SpiritInfusionRecipe;
 import dev.sterner.malum.common.recipe.SpiritWithCount;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -29,7 +28,6 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
-import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 
 import java.util.List;
 
@@ -49,7 +47,7 @@ public class AddonClient implements ClientModInitializer {
 		//LAYERS
 		EntityModelLayerRegistry.registerModelLayer(HallowedGogglesModel.LAYER, HallowedGogglesModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(EffigyEntityModel.LAYER, EffigyEntityModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(CrystalGroundBlockEntityModel.LAYER, CrystalGroundBlockEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SpiritCrystalBlockEntityModel.LAYER, SpiritCrystalBlockEntityModel::getTexturedModelData);
 
 		//ARMOR
 		ArmorRenderer.register(new HallowedGogglesRenderer(), AddonObjects.HALLOWED_GOGGLES);

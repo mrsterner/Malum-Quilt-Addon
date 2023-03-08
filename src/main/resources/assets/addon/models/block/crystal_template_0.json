@@ -4,7 +4,7 @@
 	"textures": {
 		"0": "addon:block/crystal_ground",
 		"6": "addon:block/crystal",
-		"particle": "addon:block/crystal_damned"
+		"particle": "block/deepslate"
 	},
 	"elements": [
 		{
